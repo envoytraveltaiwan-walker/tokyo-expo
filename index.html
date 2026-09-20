@@ -47,15 +47,25 @@
       font-family: var(--font-serif-tc);
     }
 
+    /* 響應式主舞台容器：手機為 100%，Surface Pro 平板端展開至 1080px */
     .mobile-stage {
       width: 100%;
-      max-width: 480px;
+      max-width: 100%;
       background-color: var(--c-paper);
       min-height: 100vh;
       position: relative;
-      box-shadow: 0 0 40px rgba(0,0,0,0.4);
+      box-shadow: 0 0 50px rgba(0,0,0,0.35);
       padding-bottom: calc(85px + env(safe-area-inset-bottom, 20px));
       overflow-x: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-stage {
+        max-width: 1080px;
+        margin: 20px auto;
+        border-radius: 16px;
+        overflow: hidden;
+      }
     }
 
     .top-tribal-band {
@@ -76,8 +86,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 20px;
+      padding: 14px 20px;
       border-bottom: 1px solid var(--c-border);
+    }
+
+    @media (min-width: 768px) {
+      .site-nav { padding: 16px 36px; }
     }
 
     .brand-group {
@@ -87,12 +101,12 @@
       text-decoration: none;
     }
 
-    .brand-svg { width: 24px; height: 32px; }
+    .brand-svg { width: 26px; height: 34px; }
     .brand-text-block { display: flex; flex-direction: column; }
 
     .brand-name-en {
       font-family: var(--font-en);
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       letter-spacing: 0.18em;
       color: var(--c-navy);
@@ -101,7 +115,7 @@
 
     .brand-name-sub {
       font-family: var(--font-en);
-      font-size: 8px;
+      font-size: 8.5px;
       letter-spacing: 0.15em;
       color: var(--c-gold);
       font-weight: 600;
@@ -118,7 +132,7 @@
     .lang-btn {
       border: none;
       background: transparent;
-      padding: 4px 10px;
+      padding: 5px 12px;
       font-size: 11px;
       font-family: var(--font-en);
       font-weight: 600;
@@ -134,22 +148,40 @@
       box-shadow: 0 2px 5px rgba(19, 36, 56, 0.25);
     }
 
+    /* 原民會橫幅容器 */
     .cip-banner-box {
       padding: 14px 16px 0;
       background: #EAE5DC;
+      display: flex;
+      justify-content: center;
     }
     .cip-banner-img {
       width: 100%;
+      max-width: 960px;
       height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       display: block;
     }
 
+    /* Hero 區域自適應配置 */
     .hero-editorial {
-      padding: 20px 20px 20px;
+      padding: 24px 20px 20px;
       text-align: center;
       background: linear-gradient(180deg, #EAE5DC 0%, var(--c-paper) 100%);
+    }
+
+    @media (min-width: 768px) {
+      .hero-editorial { padding: 36px 48px 30px; }
+      .hero-layout-grid {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 36px;
+        align-items: center;
+        text-align: left;
+        max-width: 900px;
+        margin: 0 auto;
+      }
     }
 
     .mag-label {
@@ -176,6 +208,15 @@
       background: #E6E0D6;
     }
 
+    @media (min-width: 768px) {
+      .portrait-frame {
+        width: 200px;
+        height: 250px;
+        border-radius: 100px 100px 10px 10px;
+        margin: 0;
+      }
+    }
+
     .portrait-img { width: 100%; height: 100%; object-fit: cover; }
 
     .hero-lead-title {
@@ -185,10 +226,11 @@
       margin-bottom: 4px;
       letter-spacing: 0.08em;
     }
+    @media (min-width: 768px) { .hero-lead-title { font-size: 26px; } }
 
     .hero-sub-title {
       font-family: var(--font-en);
-      font-size: 11px;
+      font-size: 11.5px;
       letter-spacing: 0.15em;
       color: var(--c-gold-dark);
       font-weight: 600;
@@ -208,14 +250,16 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
       margin: 10px 0;
     }
+    @media (min-width: 768px) { .hero-quote-card { font-size: 14px; padding: 18px 22px; } }
 
     .section-block { padding: 24px 20px; }
+    @media (min-width: 768px) { .section-block { padding: 36px 48px; } }
 
     .sec-header-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .sec-chapter {
@@ -235,31 +279,33 @@
       position: relative;
       padding-bottom: 6px;
     }
+    @media (min-width: 768px) { .sec-title { font-size: 20px; } }
 
     .sec-title::after {
       content: '';
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 32px;
+      width: 36px;
       height: 2px;
       background: var(--c-gold);
     }
 
     .mascot-icon {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
       flex-shrink: 0;
     }
 
     .prose-text {
-      font-size: 13px;
+      font-size: 13.5px;
       line-height: 2.0;
       color: #333;
       text-align: justify;
       margin-bottom: 14px;
     }
+    @media (min-width: 768px) { .prose-text { font-size: 14.5px; } }
 
     .brand-philosophy-card {
       background: var(--c-navy);
@@ -269,24 +315,40 @@
       margin: 16px 0;
       border: 1px solid var(--c-border);
     }
+    @media (min-width: 768px) {
+      .brand-philosophy-card {
+        padding: 28px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .brand-philosophy-card svg { flex-shrink: 0; margin-bottom: 0; }
+    }
 
-    .staff-star-icon { width: 34px; height: 48px; margin-bottom: 10px; }
-    .bp-title { font-size: 14px; font-weight: 600; color: var(--c-gold); margin-bottom: 8px; }
-    .bp-desc { font-size: 12px; color: #E2E8F0; line-height: 1.9; font-family: var(--font-sans-ja); }
+    .staff-star-icon { width: 36px; height: 50px; margin-bottom: 10px; }
+    .bp-title { font-size: 14.5px; font-weight: 600; color: var(--c-gold); margin-bottom: 8px; }
+    .bp-desc { font-size: 12.5px; color: #E2E8F0; line-height: 1.9; font-family: var(--font-sans-ja); }
     body.lang-zh-active .bp-desc { font-family: var(--font-sans-tc); }
 
+    /* 圖騰九宮格在平板上自動展開為 6 欄平鋪 */
     .totem-tab-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       margin: 14px 0;
     }
+    @media (min-width: 768px) {
+      .totem-tab-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+      }
+    }
 
     .totem-tab {
       background: #FFF;
       border: 1px solid #E2DBD2;
       border-radius: 8px;
-      padding: 10px 4px;
+      padding: 12px 6px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -295,11 +357,11 @@
     .totem-tab.active {
       border-color: var(--c-gold);
       background: #FFFDF9;
-      box-shadow: 0 4px 10px rgba(197, 160, 89, 0.2);
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.22);
       transform: translateY(-2px);
     }
 
-    .totem-icon-svg { width: 30px; height: 30px; margin-bottom: 4px; stroke: var(--c-navy); fill: none; }
+    .totem-icon-svg { width: 32px; height: 32px; margin-bottom: 4px; stroke: var(--c-navy); fill: none; }
     .totem-tab.active .totem-icon-svg { stroke: var(--c-gold); }
     .totem-name { font-size: 11px; font-weight: 600; color: var(--c-navy); }
 
@@ -307,16 +369,17 @@
       background: #FFF;
       border: 1px solid var(--c-gold-soft);
       border-radius: 8px;
-      padding: 14px;
-      font-size: 12px;
+      padding: 16px;
+      font-size: 12.5px;
       line-height: 1.85;
       color: #444;
       animation: fadeIn 0.3s ease;
     }
 
+    /* 行程橫向捲動導覽列（Surface Pro 觸控平滑體驗） */
     .journey-nav-tabs-wrapper {
       position: relative;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .journey-nav-tabs {
@@ -331,7 +394,7 @@
       scrollbar-color: var(--c-gold-soft) transparent;
     }
 
-    .journey-nav-tabs::-webkit-scrollbar { height: 4px; }
+    .journey-nav-tabs::-webkit-scrollbar { height: 5px; }
     .journey-nav-tabs::-webkit-scrollbar-thumb {
       background: var(--c-gold-soft);
       border-radius: 4px;
@@ -340,8 +403,8 @@
     .j-tab-btn {
       flex: 0 0 auto;
       scroll-snap-align: start;
-      padding: 7px 14px;
-      font-size: 11.5px;
+      padding: 8px 16px;
+      font-size: 12px;
       font-weight: 600;
       border-radius: 20px;
       border: 1px solid #D9D2C7;
@@ -359,34 +422,45 @@
       box-shadow: 0 2px 8px rgba(19, 36, 56, 0.2);
     }
 
+    /* 行程卡片：Surface Pro 上採圖文並排 */
     .journey-card {
       background: #FFF;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid #E6E0D6;
-      padding: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      padding: 18px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
       display: none;
     }
     .journey-card.active { display: block; animation: fadeIn 0.3s ease; }
 
+    @media (min-width: 768px) {
+      .journey-card-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: center;
+      }
+    }
+
     .jc-badge-row { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
-    .jc-badge { font-size: 9.5px; padding: 2px 8px; border-radius: 12px; font-weight: 600; font-family: var(--font-en); }
+    .jc-badge { font-size: 10px; padding: 3px 9px; border-radius: 12px; font-weight: 600; font-family: var(--font-en); }
     .jc-badge-gold { background: #FAF2E2; color: var(--c-gold-dark); border: 1px solid var(--c-gold-soft); }
     .jc-badge-dark { background: var(--c-navy); color: #FFF; }
     .jc-badge-accent { background: #26432D; color: #FFF; }
 
-    .jc-title { font-size: 15px; font-weight: 700; color: var(--c-navy); margin-bottom: 6px; line-height: 1.4; }
-    .jc-sub { font-size: 11.5px; color: var(--c-gold-dark); font-weight: 600; margin-bottom: 10px; }
-    .jc-desc { font-size: 12px; color: #555; line-height: 1.85; margin-bottom: 12px; }
+    .jc-title { font-size: 16px; font-weight: 700; color: var(--c-navy); margin-bottom: 6px; line-height: 1.4; }
+    @media (min-width: 768px) { .jc-title { font-size: 18px; } }
+    .jc-sub { font-size: 12px; color: var(--c-gold-dark); font-weight: 600; margin-bottom: 10px; }
+    .jc-desc { font-size: 12.5px; color: #555; line-height: 1.85; margin-bottom: 12px; }
 
     .jc-features {
       background: #FAF8F5;
       border-radius: 8px;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 12px;
-      font-size: 11px;
+      font-size: 11.5px;
       color: #444;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .jc-link-btn {
@@ -396,9 +470,9 @@
       background: #FAF8F5;
       border: 1px solid var(--c-gold);
       color: var(--c-gold-dark);
-      padding: 7px 12px;
+      padding: 8px 14px;
       border-radius: 6px;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 700;
       text-decoration: none;
       margin-bottom: 12px;
@@ -414,8 +488,8 @@
       background: #F2EFE9;
       border: 1px dashed var(--c-gold);
       border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 11.5px;
+      padding: 12px 14px;
+      font-size: 12px;
       color: var(--c-navy);
       line-height: 1.75;
       margin-top: 10px;
@@ -424,12 +498,15 @@
 
     .jc-hero-img-box {
       width: 100%;
-      height: 175px;
-      border-radius: 8px;
+      height: 180px;
+      border-radius: 10px;
       overflow: hidden;
       margin-bottom: 12px;
       border: 1px solid #E6E0D6;
       position: relative;
+    }
+    @media (min-width: 768px) {
+      .jc-hero-img-box { height: 260px; margin-bottom: 0; }
     }
     .jc-hero-img { width: 100%; height: 100%; object-fit: cover; }
     .jc-hero-caption {
@@ -439,42 +516,51 @@
       right: 0;
       background: linear-gradient(180deg, transparent 0%, rgba(19, 36, 56, 0.88) 100%);
       color: #FFF;
-      font-size: 10px;
-      padding: 14px 10px 5px;
+      font-size: 11px;
+      padding: 16px 12px 6px;
     }
 
-    /* 規格條：6〜20人明確對齊 */
     .specs-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
+      gap: 8px;
       margin: 16px 0;
       text-align: center;
+    }
+    @media (min-width: 768px) {
+      .specs-strip { gap: 16px; margin: 24px 0; }
     }
 
     .spec-item {
       background: #FFF;
       border: 1px solid #E8E2D8;
-      border-radius: 8px;
-      padding: 10px 4px;
+      border-radius: 10px;
+      padding: 12px 6px;
     }
+    @media (min-width: 768px) { .spec-item { padding: 18px 12px; } }
 
-    .spec-icon { font-size: 16px; margin-bottom: 2px; }
-    .spec-title { font-size: 11px; font-weight: 700; color: var(--c-navy); }
-    .spec-sub { font-size: 9px; color: #777; }
+    .spec-icon { font-size: 18px; margin-bottom: 4px; }
+    .spec-title { font-size: 11.5px; font-weight: 700; color: var(--c-navy); }
+    .spec-sub { font-size: 9.5px; color: #777; }
+    @media (min-width: 768px) {
+      .spec-title { font-size: 13px; }
+      .spec-sub { font-size: 11px; }
+    }
 
     .editor-column-box {
       background: #FFFDF9;
       border: 1px solid var(--c-gold-soft);
-      border-radius: 12px;
-      padding: 20px 18px;
+      border-radius: 14px;
+      padding: 22px 20px;
       margin-top: 14px;
       position: relative;
-      box-shadow: 0 4px 16px rgba(197, 160, 89, 0.08);
+      box-shadow: 0 4px 18px rgba(197, 160, 89, 0.08);
     }
+    @media (min-width: 768px) { .editor-column-box { padding: 32px 36px; } }
+
     .editor-tag {
       font-family: var(--font-en);
-      font-size: 9.5px;
+      font-size: 10px;
       letter-spacing: 0.2em;
       color: var(--c-gold-dark);
       font-weight: 700;
@@ -483,42 +569,47 @@
       display: block;
     }
     .editor-lead {
-      font-size: 14.5px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--c-navy);
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 12px;
       border-bottom: 1px solid rgba(197, 160, 89, 0.25);
       padding-bottom: 8px;
     }
+    @media (min-width: 768px) { .editor-lead { font-size: 17px; } }
+
     .editor-body {
-      font-size: 12.5px;
+      font-size: 13px;
       line-height: 2.1;
       color: #3A3A3A;
       text-align: justify;
       margin-bottom: 14px;
     }
+
     .editor-usage-list {
       background: var(--c-paper);
       border-left: 2.5px solid var(--c-gold);
-      padding: 12px 14px;
+      padding: 14px 16px;
       border-radius: 0 6px 6px 0;
-      font-size: 11.5px;
-      line-height: 1.85;
+      font-size: 12px;
+      line-height: 1.9;
       color: #4A4A4A;
     }
+
     .editor-sign {
       text-align: right;
       font-family: var(--font-en);
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--c-gold-dark);
       font-weight: 600;
       margin-top: 12px;
       letter-spacing: 0.05em;
     }
 
+    /* 官方認證統一頁尾 */
     .footer-official-badge {
-      padding: 28px 20px 16px;
+      padding: 30px 20px 18px;
       background-color: #EDE8DF;
       border-top: 1px solid rgba(197, 160, 89, 0.28);
       text-align: center;
@@ -550,24 +641,25 @@
     }
 
     .footer-official-badge .cip-logo-img {
-      height: 22px;
+      height: 24px;
       width: auto;
       object-fit: contain;
     }
 
     .footer-official-badge .endorsement-text {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 600;
       color: #8C6B2D;
     }
 
     .footer-official-badge .copyright-text {
-      font-size: 10px;
+      font-size: 10.5px;
       font-family: var(--font-en);
       color: #8E8E8E;
       letter-spacing: 0.05em;
     }
 
+    /* 底部固定按鈕列：手機全寬，Surface Pro 自動居中並限制寬度 */
     .bottom-bar {
       position: fixed;
       bottom: 0;
@@ -584,6 +676,15 @@
       gap: 10px;
       z-index: 100;
       box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+    }
+
+    @media (min-width: 768px) {
+      .bottom-bar {
+        max-width: 540px;
+        border-radius: 12px 12px 0 0;
+        border-left: 1px solid var(--c-border);
+        border-right: 1px solid var(--c-border);
+      }
     }
 
     .bar-btn {
@@ -636,32 +737,36 @@
       </div>
     </nav>
 
-    <!-- 原民會 2026 日本旅展「部行山海間」官方主視覺橫幅 -->
+    <!-- 原民會 2026 日本旅展官方主視覺橫幅 -->
     <div class="cip-banner-box">
       <img src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E7%B4%A0%E6%9D%90_2026%E6%97%A5%E6%9C%AC%E6%97%85%E5%B1%95(%E5%8E%9F%E6%B0%91%E6%9C%83)_%E7%B5%A6%E6%A5%AD%E8%80%85-07.jpg" 
            alt="部行山海間" 
            class="cip-banner-img">
     </div>
 
+    <!-- Hero 封面特刊（Surface Pro 自動雙欄並排） -->
     <header class="hero-editorial">
-      <span class="mag-label" id="i18n-mag-tag">Special Editorial ‧ 旅の案内人</span>
-
-      <div class="portrait-frame">
-        <img class="portrait-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E8%8E%89%E6%A2%85%E5%A7%90.png" alt="莉梅姐 Mei Chang">
+      <div class="hero-layout-grid">
+        <div>
+          <div class="portrait-frame">
+            <img class="portrait-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E8%8E%89%E6%A2%85%E5%A7%90.png" alt="莉梅姐 Mei Chang">
+          </div>
+        </div>
+        <div>
+          <span class="mag-label" id="i18n-mag-tag">Special Editorial ‧ 旅の案内人</span>
+          <h1 class="hero-lead-title" id="i18n-hero-name">莉梅姐（メイ姉さん）</h1>
+          <p class="hero-sub-title" id="i18n-hero-role">専属トラベルコンサルタント ｜ 旅の案内人 35年</p>
+          <blockquote class="hero-quote-card">
+            <span id="i18n-hero-quote">
+              「風の匂い、古木が語りかける呼吸。<br>
+              35年歩み続けたからこそ出会えた、誰も知らない美しき台湾原郷へご案内します。」
+            </span>
+          </blockquote>
+        </div>
       </div>
-
-      <h1 class="hero-lead-title" id="i18n-hero-name">莉梅姐（メイ姉さん）</h1>
-      <p class="hero-sub-title" id="i18n-hero-role">専属トラベルコンサルタント ｜ 旅の案内人 35年</p>
-
-      <blockquote class="hero-quote-card">
-        <span id="i18n-hero-quote">
-          「風の匂い、古木が語りかける呼吸。<br>
-          35年歩み続けたからこそ出会えた、誰も知らない美しき台湾原郷へご案内します。」
-        </span>
-      </blockquote>
     </header>
 
-    <!-- 3大規格亮點列（更新為 6〜20人） -->
+    <!-- 3大規格亮點列（6〜20人規格） -->
     <div class="section-block" style="padding-top: 0; padding-bottom: 0;">
       <div class="specs-strip">
         <div class="spec-item">
@@ -705,14 +810,16 @@
           <path d="M51 53.5 C54.2 63 60.5 75 69.5 86.5 C70.8 88.2 72.8 90 74.2 88.5 C75.5 86.8 73.8 85 72.2 83 C64 71.5 58.2 61 55 52.5 Z" fill="#FFF"/>
           <path d="M47.2 52.5 C48.8 52 51.2 52 52.8 52.5 C53.2 67 53.6 84 53.2 101 C52.8 116 53.2 126 52.6 133 C52.2 135.5 47.8 135.5 47.4 133 C46.8 126 47.2 116 46.8 101 C46.4 84 46.8 67 47.2 52.5 Z" fill="#FFF"/>
         </svg>
-        <div class="bp-title" id="i18n-staff-title">✦ 原木の手杖と北極星の輝き</div>
-        <div class="bp-desc" id="i18n-staff-desc">
-          削り出された手杖は35年間の歩みと山林への敬意を象徴し、頂点の星芒は喧騒の時代において、揺るぎない文化探訪の方向を示す北極星を意味します。
+        <div>
+          <div class="bp-title" id="i18n-staff-title">✦ 原木の手杖と北極星の輝き</div>
+          <div class="bp-desc" id="i18n-staff-desc">
+            削り出された手杖は35年間の歩みと山林への敬意を象徴し、頂点の星芒は喧騒の時代において、揺るぎない文化探訪の方向を示す北極星を意味します。
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 篇章 02：六大部落圖騰互動選單 -->
+    <!-- 篇章 02：六大部落圖騰互動選單（Surface Pro 上自動 6 欄平鋪） -->
     <section class="section-block" style="background: #F4EFE6;">
       <span class="sec-chapter">CHAPTER 02</span>
       <h2 class="sec-title" id="i18n-c2-title">大地と祖霊が宿る、台湾原住民族の紋様</h2>
@@ -878,28 +985,32 @@
         </div>
       </div>
 
-      <!-- 行程 4：烏尼囊 獵人星空餐桌 -->
+      <!-- 行程 4：烏尼囊 獵人星空餐桌（在 Surface Pro 雙欄排版） -->
       <div class="journey-card" id="journey-card-4">
-        <div class="jc-badge-row">
-          <span class="jc-badge jc-badge-accent" id="j4-b1">6〜20名様貸切可能</span>
-          <span class="jc-badge jc-badge-gold" id="j4-b2">3月〜10月限定</span>
-        </div>
-        
-        <div class="jc-hero-img-box">
-          <img class="jc-hero-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/tokyo-expo/main/%E7%8D%B5%E4%BA%BA%E6%98%9F%E7%A9%BA%E9%A4%90%E6%A1%8C1.jpg" alt="獵人星空餐桌長廊營火夜宴">
-          <div class="jc-hero-caption" id="j4-img-cap">✦ 永康集落の山頂：星空の下、焚き火と伝統の歌声が響く夜宴</div>
-        </div>
-
-        <h3 class="jc-title" id="j4-title">【ウニナン・星空レストラン】山頂の野宴 × 縦谷の星夜</h3>
-        <p class="jc-sub" id="j4-sub">黄昏の入山祈祷 ✕ 獣径トレイル ✕ 満天の星空の下の歌声</p>
-        <p class="jc-desc" id="j4-desc">
-          台東延平郷永康集落での贅沢なトワイライトツアー。午後専用車で山頂へ登り、伝統衣装を身にまとって入山儀式に参加。夜は山頂から見下ろす縦谷の煌めく夜景とともに、木の温もりあふれる回廊で直火焼き料理と勇士の凱旋歌を堪能します。
-        </p>
-        <div class="jc-features" id="j4-feat">
-          🌌 <b>オーダーメイド仕様</b>：約6時間の完全没入、専用車送迎、ブヌン族の祈祷と伝統合唱、星空の下のプライベートディナー（6〜20名様）。
-        </div>
-        <div class="charter-action-box" id="j4-charter">
-          <strong>✦ 6〜20名様限定催行！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
+        <div class="journey-card-layout">
+          <div>
+            <div class="jc-badge-row">
+              <span class="jc-badge jc-badge-accent" id="j4-b1">6〜20名様貸切可能</span>
+              <span class="jc-badge jc-badge-gold" id="j4-b2">3月〜10月限定</span>
+            </div>
+            <h3 class="jc-title" id="j4-title">【ウニナン・星空レストラン】山頂の野宴 × 縦谷の星夜</h3>
+            <p class="jc-sub" id="j4-sub">黄昏の入山祈祷 ✕ 獣径トレイル ✕ 満天の星空の下の歌声</p>
+            <p class="jc-desc" id="j4-desc">
+              台東延平郷永康集落での贅沢なトワイライトツアー。午後専用車で山頂へ登り、伝統衣装を身にまとって入山儀式に参加。夜は山頂から見下ろす縦谷の煌めく夜景とともに、木の温もりあふれる回廊で直火焼き料理と勇士の凱旋歌を堪能します。
+            </p>
+            <div class="jc-features" id="j4-feat">
+              🌌 <b>オーダーメイド仕様</b>：約6時間の完全没入、専用車送迎、ブヌン族の祈祷と伝統合唱、星空の下のプライベートディナー（6〜20名様）。
+            </div>
+          </div>
+          <div>
+            <div class="jc-hero-img-box">
+              <img class="jc-hero-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/tokyo-expo/main/%E7%8D%B5%E4%BA%BA%E6%98%9F%E7%A9%BA%E9%A4%90%E6%A1%8C1.jpg" alt="獵人星空餐桌長廊營火夜宴">
+              <div class="jc-hero-caption" id="j4-img-cap">✦ 永康集落の山頂：星空の下、焚き火と伝統の歌声が響く夜宴</div>
+            </div>
+            <div class="charter-action-box" id="j4-charter">
+              <strong>✦ 6〜20名様限定催行！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
+            </div>
+          </div>
         </div>
       </div>
 
@@ -999,7 +1110,7 @@
       </p>
     </footer>
 
-    <!-- 底部固定按鈕列 -->
+    <!-- 底部固定按鈕列（手機與 Surface Pro 兼顧） -->
     <div class="bottom-bar">
       <a href="mailto:service@envoytravel.com.tw?subject=【東京旅展2026】台湾旅行・お問合せ" class="bar-btn btn-mail" id="i18n-btn-b2b">
         メールでお問合せ
