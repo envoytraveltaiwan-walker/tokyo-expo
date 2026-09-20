@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ENVOY TRAVEL 安捷國際旅行社 | 旅の案内人・台湾原郷クラフトツアー</title>
   
+  <!-- 引入 Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Serif+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
   
   <style>
@@ -133,10 +134,23 @@
       box-shadow: 0 2px 5px rgba(19, 36, 56, 0.25);
     }
 
+    /* 原民會「部行山海間」橫額容器 */
+    .cip-banner-box {
+      padding: 14px 16px 0;
+      background: #EAE5DC;
+    }
+    .cip-banner-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: block;
+    }
+
     .hero-editorial {
-      padding: 24px 20px 20px;
+      padding: 20px 20px 20px;
       text-align: center;
-      background: linear-gradient(180deg, #F3ECE1 0%, var(--c-paper) 100%);
+      background: linear-gradient(180deg, #EAE5DC 0%, var(--c-paper) 100%);
     }
 
     .mag-label {
@@ -198,6 +212,13 @@
 
     .section-block { padding: 24px 20px; }
 
+    .sec-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 12px;
+    }
+
     .sec-chapter {
       font-family: var(--font-en);
       font-size: 10px;
@@ -212,7 +233,6 @@
       font-size: 17px;
       font-weight: 700;
       color: var(--c-navy);
-      margin-bottom: 12px;
       position: relative;
       padding-bottom: 6px;
     }
@@ -225,6 +245,14 @@
       width: 32px;
       height: 2px;
       background: var(--c-gold);
+    }
+
+    /* 章節吉祥物圖標 */
+    .mascot-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
     .prose-text {
@@ -305,9 +333,7 @@
       scrollbar-color: var(--c-gold-soft) transparent;
     }
 
-    .journey-nav-tabs::-webkit-scrollbar {
-      height: 4px;
-    }
+    .journey-nav-tabs::-webkit-scrollbar { height: 4px; }
     .journey-nav-tabs::-webkit-scrollbar-thumb {
       background: var(--c-gold-soft);
       border-radius: 4px;
@@ -365,7 +391,6 @@
       line-height: 1.7;
     }
 
-    /* 6人成行行動指引提示框 */
     .charter-action-box {
       background: #F2EFE9;
       border: 1px dashed var(--c-gold);
@@ -376,9 +401,7 @@
       line-height: 1.75;
       margin-top: 10px;
     }
-    .charter-action-box strong {
-      color: #A62122;
-    }
+    .charter-action-box strong { color: #A62122; }
 
     .jc-hero-img-box {
       width: 100%;
@@ -474,16 +497,57 @@
       letter-spacing: 0.05em;
     }
 
-    .footer-endorse {
-      padding: 24px 20px 10px;
-      background: #EDE8E0;
-      border-top: 1px solid var(--c-border);
+    /* 官方認證頁尾（包含原民會正式 Logo） */
+    .footer-official-badge {
+      padding: 28px 20px 16px;
+      background-color: #EDE8DF;
+      border-top: 1px solid rgba(197, 160, 89, 0.28);
       text-align: center;
-      font-size: 11px;
-      color: #666;
-      line-height: 1.8;
+      color: #555555;
+      line-height: 1.85;
     }
-    .footer-endorse strong { color: var(--c-navy); }
+
+    .footer-official-badge .company-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #132438;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+    }
+
+    .footer-official-badge .license-info {
+      font-size: 11.5px;
+      color: #666666;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+
+    .footer-official-badge .endorsement-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 8px 0 10px;
+    }
+
+    .footer-official-badge .cip-logo-img {
+      height: 22px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .footer-official-badge .endorsement-text {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #8C6B2D;
+    }
+
+    .footer-official-badge .copyright-text {
+      font-size: 10px;
+      font-family: var(--font-en);
+      color: #8E8E8E;
+      letter-spacing: 0.05em;
+    }
 
     .bottom-bar {
       position: fixed;
@@ -545,12 +609,21 @@
         </div>
       </a>
 
+      <!-- 中日切換鍵 -->
       <div class="lang-switcher">
         <button class="lang-btn active" id="btn-ja" onclick="setLanguage('ja')">日本語</button>
         <button class="lang-btn" id="btn-zh" onclick="setLanguage('zh')">繁中</button>
       </div>
     </nav>
 
+    <!-- 原民會 2026 日本旅展「部行山海間」官方主視覺橫幅 -->
+    <div class="cip-banner-box">
+      <img src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E7%B4%A0%E6%9D%90_2026%E6%97%A5%E6%9C%AC%E6%97%85%E5%B1%95(%E5%8E%9F%E6%B0%91%E6%9C%83)_%E7%B5%A6%E6%A5%AD%E8%80%85-07.jpg" 
+           alt="部行山海間" 
+           class="cip-banner-img">
+    </div>
+
+    <!-- Hero 封面特刊 -->
     <header class="hero-editorial">
       <span class="mag-label" id="i18n-mag-tag">Special Editorial ‧ 旅の案内人</span>
 
@@ -589,10 +662,18 @@
       </div>
     </div>
 
-    <!-- 篇章 01：品牌哲學與手杖精神 -->
+    <!-- 篇章 01：品牌哲學與手杖精神（置入吉祥物 06） -->
     <section class="section-block">
-      <span class="sec-chapter">CHAPTER 01</span>
-      <h2 class="sec-title" id="i18n-c1-title">35年の旅路が紡ぐ、私だけの台湾。</h2>
+      <div class="sec-header-row">
+        <div>
+          <span class="sec-chapter">CHAPTER 01</span>
+          <h2 class="sec-title" id="i18n-c1-title">35年の旅路が紡ぐ、私だけの台湾。</h2>
+        </div>
+        <!-- 吉祥物 06：探索原鄉 -->
+        <img src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E7%B4%A0%E6%9D%90_2026%E6%97%A5%E6%9C%AC%E6%97%85%E5%B1%95(%E5%8E%9F%E6%B0%91%E6%9C%83)_%E7%B5%A6%E6%A5%AD%E8%80%85-06.png" 
+             alt="原民探索吉祥物" 
+             class="mascot-icon">
+      </div>
       
       <p class="prose-text" id="i18n-c1-p1">
         旅とは、単に名所を巡る移動ではありません。それは土地が長い歳月をかけて育んできた「記憶の気配」にそっと触れること。急ぎ足の観光地巡りでは決して味わえない、木漏れ日の揺らぎや大地に息づく先住民族の誇りを、親しい友人を案内するように温かく調律します。
@@ -650,12 +731,19 @@
       <div class="totem-detail-box" id="totem-detail-content"></div>
     </section>
 
-    <!-- 篇章 03：7大嚴選慢旅 ✕ 客製化私廚體驗 (Tab 支援橫向順暢滑動) -->
+    <!-- 篇章 03：7大嚴選慢旅 ✕ 客製化私廚體驗（置入吉祥物 03） -->
     <section class="section-block">
-      <span class="sec-chapter">CHAPTER 03</span>
-      <h2 class="sec-title" id="i18n-c3-title">莉梅姐が届ける、厳選ツアー＆オーダーメイド</h2>
+      <div class="sec-header-row">
+        <div>
+          <span class="sec-chapter">CHAPTER 03</span>
+          <h2 class="sec-title" id="i18n-c3-title">莉梅姐が届ける、厳選ツアー＆オーダーメイド</h2>
+        </div>
+        <!-- 吉祥物 03：風土美味 -->
+        <img src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E7%B4%A0%E6%9D%90_2026%E6%97%A5%E6%9C%AC%E6%97%85%E5%B1%95(%E5%8E%9F%E6%B0%91%E6%9C%83)_%E7%B5%A6%E6%A5%AD%E8%80%85-03.png" 
+             alt="原民美食吉祥物" 
+             class="mascot-icon">
+      </div>
 
-      <!-- 左右可滑動之 Tab 導航列 -->
       <div class="journey-nav-tabs-wrapper">
         <div class="journey-nav-tabs" id="journey-tabs-container">
           <button class="j-tab-btn active" onclick="switchJourney(0)" id="j-tab-0">🏹 里山リトリート</button>
@@ -744,14 +832,13 @@
         </div>
       </div>
 
-      <!-- 行程 4：烏尼囊 獵人星空餐桌 (已換成真實長廊營火照片) -->
+      <!-- 行程 4：烏尼囊 獵人星空餐桌 (實景圖) -->
       <div class="journey-card" id="journey-card-4">
         <div class="jc-badge-row">
           <span class="jc-badge jc-badge-accent" id="j4-b1">6名様より貸切可能</span>
           <span class="jc-badge jc-badge-gold" id="j4-b2">3月〜10月限定</span>
         </div>
         
-        <!-- 嵌入真實上傳之照片：獵人星空餐桌1.jpg -->
         <div class="jc-hero-img-box">
           <img class="jc-hero-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/tokyo-expo/main/%E7%8D%B5%E4%BA%BA%E6%98%9F%E7%A9%BA%E9%A4%90%E6%A1%8C1.jpg" alt="獵人星空餐桌長廊營火夜宴">
           <div class="jc-hero-caption" id="j4-img-cap">✦ 永康集落の山頂：星空の下、焚き火と伝統の歌声が響く夜宴</div>
@@ -809,10 +896,18 @@
       </div>
     </section>
 
-    <!-- 篇章 04：日本時尚雜誌主編隨筆風 信物專欄 -->
+    <!-- 篇章 04：文化信物與雜誌主編隨筆（置入吉祥物 05） -->
     <section class="section-block" style="background: #FFF;">
-      <span class="sec-chapter">CHAPTER 04</span>
-      <h2 class="sec-title" id="i18n-c4-title">森の気配を宿す、文化の信物</h2>
+      <div class="sec-header-row">
+        <div>
+          <span class="sec-chapter">CHAPTER 04</span>
+          <h2 class="sec-title" id="i18n-c4-title">森の気配を宿す、文化の信物</h2>
+        </div>
+        <!-- 吉祥物 05：放鬆休憩 -->
+        <img src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E7%B4%A0%E6%9D%90_2026%E6%97%A5%E6%9C%AC%E6%97%85%E5%B1%95(%E5%8E%9F%E6%B0%91%E6%9C%83)_%E7%B5%A6%E6%A5%AD%E8%80%85-05.png" 
+             alt="放鬆休憩吉祥物" 
+             class="mascot-icon">
+      </div>
       
       <div class="editor-column-box">
         <span class="editor-tag" id="ed-tag">Editor’s Column ‧ 旅の記憶を綴る</span>
@@ -836,11 +931,28 @@
       </div>
     </section>
 
-    <footer class="footer-endorse">
-      <p><strong id="i18n-ft-agent">台湾・安捷國際旅行社有限公司 ENVOY TRAVEL</strong></p>
-      <p id="i18n-ft-reg">交通部観光署 登録旅行業 甲種 5920 号 ｜ 統一番号：16169138</p>
-      <p style="margin-top: 4px; color: var(--c-gold-dark);" id="i18n-ft-cip">☀️【公認・推薦】台湾 原住民族委員会 認定パートナーシップ企業</p>
-      <p style="margin-top: 8px; font-size: 10px; opacity: 0.6;">© 2026 ENVOY TRAVEL. All Rights Reserved.</p>
+    <!-- 官方認證與旅行業履約保證頁尾（包含原民會正式彩色 Logo） -->
+    <footer class="footer-official-badge">
+      <p class="company-name" id="ft-comp-name">
+        台湾・安捷國際旅行社有限公司 ENVOY TRAVEL
+      </p>
+      <p class="license-info" id="ft-lic-info">
+        交通部観光署 登録旅行業 甲種 5920 号 ｜ 統一番号：16169138
+      </p>
+      
+      <!-- 原民會正式 Logo ＋ 官方推薦背書 -->
+      <div class="endorsement-box">
+        <img src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E7%B4%A0%E6%9D%90_2026%E6%97%A5%E6%9C%AC%E6%97%85%E5%B1%95(%E5%8E%9F%E6%B0%91%E6%9C%83)_%E7%B5%A6%E6%A5%AD%E8%80%85-02.png" 
+             alt="原住民族委員會" 
+             class="cip-logo-img">
+        <span class="endorsement-text" id="ft-endorse-text">
+          【推薦・公認】台湾 原住民族委員会 認定パートナーシップ企業
+        </span>
+      </div>
+
+      <p class="copyright-text">
+        © 2026 ENVOY TRAVEL. All Rights Reserved.
+      </p>
     </footer>
 
     <div class="bottom-bar">
@@ -945,9 +1057,10 @@
         edUsage: "<strong>🌿 暮らしを彩る、愛しい活用法：</strong><br>読書を慈しむ手帳のしおりとして。大切な方へ届ける香りの便箋の下敷きに。あるいは小さなフレームに収めてお部屋を彩るミニアートに。本を開くたび、ページをめくる風に乗って漂う温かな木の香りが、いつでもあなたを誰も知らない美しき台湾の森へと誘ってくれます。",
         edSign: "— Curated by ENVOY TRAVEL",
 
-        ftAgent: "台湾・安捷國際旅行社有限公司 ENVOY TRAVEL",
-        ftReg: "交通部観光署 登録旅行業 甲種 5920 号 ｜ 統一番号：16169138",
-        ftCip: "☀️【公認・推薦】台湾 原住民族委員会 認定パートナーシップ企業",
+        ftCompName: "台湾・安捷國際旅行社有限公司 ENVOY TRAVEL",
+        ftLicInfo: "交通部観光署 登録旅行業 甲種 5920 号 ｜ 統一番号：16169138",
+        ftEndorseText: "【推薦・公認】台湾 原住民族委員会 認定パートナーシップ企業",
+
         btnB2B: "✉ メールでお問合せ (B2B)",
         btnB2C: "💬 LINEで相談する (B2C)"
       },
@@ -1021,9 +1134,10 @@
         edUsage: "<strong>🌿 融入日常的美好靈感：</strong><br>夾在隨身手帳或喜愛的書頁間作為雅致書籤；為遠方摯友包裹禮品時襯上一份溫潤心意；或放入小相框中作為微縮和風藝術擺飾。在翻頁的微風拂過之際，隨時都能在城市的日常裡，重溫台灣深山最純淨安定的深呼吸。",
         edSign: "— Curated by ENVOY TRAVEL",
 
-        ftAgent: "安捷國際旅行社有限公司 ENVOY TRAVEL",
-        ftReg: "交通部觀光署 註冊旅行業 甲種 5920 號 ｜ 統編：16169138",
-        ftCip: "☀️【官方推薦】行政院原住民族委員會認證合作夥伴",
+        ftCompName: "安捷國際旅行社有限公司 ENVOY TRAVEL",
+        ftLicInfo: "交通部觀光署 註冊旅行業 甲種 5920 號 ｜ 統編：16169138",
+        ftEndorseText: "【官方推薦】行政院原住民族委員會認證合作夥伴",
+
         btnB2B: "✉ 電子郵件洽詢 (B2B)",
         btnB2C: "💬 LINE 專人諮詢"
       }
@@ -1093,9 +1207,10 @@
       document.getElementById('ed-usage').innerHTML = dict.edUsage;
       document.getElementById('ed-sign').innerText = dict.edSign;
 
-      document.getElementById('i18n-ft-agent').innerText = dict.ftAgent;
-      document.getElementById('i18n-ft-reg').innerText = dict.ftReg;
-      document.getElementById('i18n-ft-cip').innerText = dict.ftCip;
+      document.getElementById('ft-comp-name').innerText = dict.ftCompName;
+      document.getElementById('ft-lic-info').innerText = dict.ftLicInfo;
+      document.getElementById('ft-endorse-text').innerText = dict.ftEndorseText;
+
       document.getElementById('i18n-btn-b2b').innerText = dict.btnB2B;
       document.getElementById('i18n-btn-b2c').innerText = dict.btnB2C;
     }
