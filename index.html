@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ENVOY TRAVEL 安捷國際旅行社 | 旅の案内人・台湾原郷クラフトツアー</title>
+  
+  <!-- 引入 Google Fonts: Noto Serif JP, Noto Serif TC, Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Serif+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* ENVOY Brand Guidelines V4.0 Color Palette */
+      --c-navy: #132438;        /* 使節深海藍 Pantone 296 C */
+      --c-navy-light: #1B365D;
+      --c-gold: #C5A059;        /* 特殊霧面啞金 Pantone 465 C */
+      --c-gold-soft: #D9C394;
+      --c-gold-dark: #8C6B2D;
+      --c-paper: #FAF8F5;       /* 和紙棉紙白 Pantone 7527 U */
+      --c-sand: #F2EDE4;
+      --c-gray-muted: #A3A3A3;  /* 浮水印霧灰 Cool Gray 3 C */
+      --c-border: rgba(197, 160, 89, 0.28);
+      
+      --font-serif-ja: 'Noto Serif JP', serif;
+      --font-serif-tc: 'Noto Serif TC', serif;
+      --font-sans-ja: 'Noto Sans JP', sans-serif;
+      --font-sans-tc: 'Noto Sans TC', sans-serif;
+      --font-en: 'Montserrat', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background-color: #1F2732;
+      color: var(--c-navy);
+      font-family: var(--font-serif-ja);
+      line-height: 1.85;
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      transition: font-family 0.2s ease;
+    }
+
+    body.lang-zh-active {
+      font-family: var(--font-serif-tc);
+    }
+
+    /* 手機雜誌視窗限制 480px */
+    .mobile-stage {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--c-paper);
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,0,0,0.4);
+      padding-bottom: 95px;
+      overflow-x: hidden;
+    }
+
+    /* 頂部泰雅菱格織紋飾帶 */
+    .top-tribal-band {
+      width: 100%;
+      height: 8px;
+      background-color: var(--c-navy);
+      background-image: repeating-linear-gradient(45deg, var(--c-gold) 0, var(--c-gold) 2px, transparent 0, transparent 8px),
+                        repeating-linear-gradient(-45deg, var(--c-gold) 0, var(--c-gold) 2px, transparent 0, transparent 8px);
+      background-size: 10px 8px;
+    }
+
+    /* 頂部導覽列 */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-svg { width: 24px; height: 32px; }
+
+    .brand-text-block { display: flex; flex-direction: column; }
+
+    .brand-name-en {
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--c-navy);
+      line-height: 1.1;
+    }
+
+    .brand-name-sub {
+      font-family: var(--font-en);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      color: var(--c-gold);
+      font-weight: 600;
+    }
+
+    /* 中日語言即時切換膠囊 */
+    .lang-switcher {
+      display: flex;
+      background: #EBE5DB;
+      border-radius: 20px;
+      padding: 2px;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-family: var(--font-en);
+      font-weight: 600;
+      border-radius: 16px;
+      cursor: pointer;
+      color: #666;
+      transition: all 0.25s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--c-navy);
+      color: #FFF;
+      box-shadow: 0 2px 5px rgba(19, 36, 56, 0.25);
+    }
+
+    /* Hero 封面雜誌區 */
+    .hero-editorial {
+      padding: 24px 20px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, #F3ECE1 0%, var(--c-paper) 100%);
+    }
+
+    .mag-label {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: var(--c-gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+      border-bottom: 1px solid var(--c-gold);
+      padding-bottom: 2px;
+    }
+
+    .portrait-frame {
+      width: 145px;
+      height: 190px;
+      margin: 0 auto 16px;
+      border-radius: 75px 75px 8px 8px;
+      overflow: hidden;
+      border: 2px solid var(--c-gold);
+      box-shadow: 0 10px 25px rgba(19, 36, 56, 0.12);
+      background: #E6E0D6;
+    }
+
+    .portrait-img { width: 100%; height: 100%; object-fit: cover; }
+
+    .hero-lead-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin-bottom: 4px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-sub-title {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--c-gold-dark);
+      font-weight: 600;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .hero-quote-card {
+      background: #FFF;
+      border-left: 3px solid var(--c-gold);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--c-navy);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      margin: 10px 0;
+    }
+
+    .section-block { padding: 24px 20px; }
+
+    .sec-chapter {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--c-gold);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .sec-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin-bottom: 12px;
+      position: relative;
+      padding-bottom: 6px;
+    }
+
+    .sec-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 32px;
+      height: 2px;
+      background: var(--c-gold);
+    }
+
+    .prose-text {
+      font-size: 13px;
+      line-height: 2.0;
+      color: #333;
+      text-align: justify;
+      margin-bottom: 14px;
+    }
+
+    .brand-philosophy-card {
+      background: var(--c-navy);
+      color: #FFF;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 16px 0;
+      border: 1px solid var(--c-border);
+    }
+
+    .staff-star-icon { width: 34px; height: 48px; margin-bottom: 10px; }
+    .bp-title { font-size: 14px; font-weight: 600; color: var(--c-gold); margin-bottom: 8px; }
+    .bp-desc { font-size: 12px; color: #E2E8F0; line-height: 1.9; font-family: var(--font-sans-ja); }
+    body.lang-zh-active .bp-desc { font-family: var(--font-sans-tc); }
+
+    .totem-tab-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .totem-tab {
+      background: #FFF;
+      border: 1px solid #E2DBD2;
+      border-radius: 8px;
+      padding: 10px 4px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .totem-tab.active {
+      border-color: var(--c-gold);
+      background: #FFFDF9;
+      box-shadow: 0 4px 10px rgba(197, 160, 89, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .totem-icon-svg { width: 30px; height: 30px; margin-bottom: 4px; stroke: var(--c-navy); fill: none; }
+    .totem-tab.active .totem-icon-svg { stroke: var(--c-gold); }
+    .totem-name { font-size: 11px; font-weight: 600; color: var(--c-navy); }
+
+    .totem-detail-box {
+      background: #FFF;
+      border: 1px solid var(--c-gold-soft);
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 12px;
+      line-height: 1.85;
+      color: #444;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .journey-nav-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      scrollbar-width: none;
+    }
+    .journey-nav-tabs::-webkit-scrollbar { display: none; }
+
+    .j-tab-btn {
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 20px;
+      border: 1px solid #D9D2C7;
+      background: #FFF;
+      color: #666;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .j-tab-btn.active {
+      background: var(--c-navy);
+      color: #FFF;
+      border-color: var(--c-navy);
+    }
+
+    .journey-card {
+      background: #FFF;
+      border-radius: 12px;
+      border: 1px solid #E6E0D6;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: none;
+    }
+    .journey-card.active { display: block; animation: fadeIn 0.3s ease; }
+
+    .jc-badge-row { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+    .jc-badge { font-size: 9.5px; padding: 2px 8px; border-radius: 12px; font-weight: 600; font-family: var(--font-en); }
+    .jc-badge-gold { background: #FAF2E2; color: var(--c-gold-dark); border: 1px solid var(--c-gold-soft); }
+    .jc-badge-dark { background: var(--c-navy); color: #FFF; }
+    .jc-badge-accent { background: #26432D; color: #FFF; }
+
+    .jc-title { font-size: 15px; font-weight: 700; color: var(--c-navy); margin-bottom: 6px; line-height: 1.4; }
+    .jc-sub { font-size: 11.5px; color: var(--c-gold-dark); font-weight: 600; margin-bottom: 10px; }
+    .jc-desc { font-size: 12px; color: #555; line-height: 1.85; margin-bottom: 12px; }
+
+    .jc-features {
+      background: #FAF8F5;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .jc-hero-img-box {
+      width: 100%;
+      height: 160px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 1px solid #E6E0D6;
+      position: relative;
+    }
+    .jc-hero-img { width: 100%; height: 100%; object-fit: cover; }
+    .jc-hero-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(19, 36, 56, 0.85) 100%);
+      color: #FFF;
+      font-size: 10px;
+      padding: 12px 10px 4px;
+    }
+
+    .specs-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin: 16px 0;
+      text-align: center;
+    }
+
+    .spec-item {
+      background: #FFF;
+      border: 1px solid #E8E2D8;
+      border-radius: 8px;
+      padding: 10px 4px;
+    }
+
+    .spec-icon { font-size: 16px; margin-bottom: 2px; }
+    .spec-title { font-size: 11px; font-weight: 700; color: var(--c-navy); }
+    .spec-sub { font-size: 9px; color: #777; }
+
+    .footer-endorse {
+      padding: 24px 20px 10px;
+      background: #EDE8E0;
+      border-top: 1px solid var(--c-border);
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      line-height: 1.8;
+    }
+    .footer-endorse strong { color: var(--c-navy); }
+
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--c-border);
+      padding: 10px 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+    }
+
+    .bar-btn {
+      flex: 1;
+      height: 44px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-mail { background: var(--c-navy); color: #FFF; }
+    .btn-line { background: #06C755; color: #FFF; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-stage">
+    
+    <div class="top-tribal-band"></div>
+
+    <nav class="site-nav">
+      <a href="#" class="brand-group">
+        <svg class="brand-svg" viewBox="0 0 100 140">
+          <path d="M50 6 C51 15 52.5 21 55.5 25 C60 25.8 66 26 73 26.5 C66 28 60 29.2 56 31 C53.8 35 52 41 50 47 C48 41 46.2 35 44 31 C40 29.2 34 28 27 26.5 C34 26 40 25.8 44.5 25 C47.5 21 49 15 50 6 Z" fill="#C5A059"/>
+          <path d="M46 48.5 C47.5 48 52.5 48 54 48.5 C54.8 49.2 54.5 51.5 53.8 52.2 C52 52.8 48 52.8 46.2 52.2 C45.5 51.5 45.2 49.2 46 48.5 Z" fill="#132438"/>
+          <path d="M49 53.5 C45.8 63 39.5 75 30.5 86.5 C29.2 88.2 27.2 90 25.8 88.5 C24.5 86.8 26.2 85 27.8 83 C36 71.5 41.8 61 45 52.5 Z" fill="#C5A059"/>
+          <path d="M51 53.5 C54.2 63 60.5 75 69.5 86.5 C70.8 88.2 72.8 90 74.2 88.5 C75.5 86.8 73.8 85 72.2 83 C64 71.5 58.2 61 55 52.5 Z" fill="#C5A059"/>
+          <path d="M47.2 52.5 C48.8 52 51.2 52 52.8 52.5 C53.2 67 53.6 84 53.2 101 C52.8 116 53.2 126 52.6 133 C52.2 135.5 47.8 135.5 47.4 133 C46.8 126 47.2 116 46.8 101 C46.4 84 46.8 67 47.2 52.5 Z" fill="#C5A059"/>
+        </svg>
+        <div class="brand-text-block">
+          <span class="brand-name-en">ENVOY TRAVEL</span>
+          <span class="brand-name-sub" id="nav-reg-sub">安捷旅遊 ‧ 甲種 5920 號</span>
+        </div>
+      </a>
+
+      <!-- 中日語系即時切換鍵 -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-ja" onclick="setLanguage('ja')">日本語</button>
+        <button class="lang-btn" id="btn-zh" onclick="setLanguage('zh')">繁中</button>
+      </div>
+    </nav>
+
+    <header class="hero-editorial">
+      <span class="mag-label" id="i18n-mag-tag">Special Editorial ‧ 旅の案内人</span>
+
+      <div class="portrait-frame">
+        <img class="portrait-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/healing-trip/main/%E8%8E%89%E6%A2%85%E5%A7%90.png" alt="莉梅姐 Mei Chang">
+      </div>
+
+      <h1 class="hero-lead-title" id="i18n-hero-name">莉梅姐（メイ姉さん）</h1>
+      <p class="hero-sub-title" id="i18n-hero-role">専属トラベルコンサルタント ｜ 旅の案内人 35年</p>
+
+      <blockquote class="hero-quote-card">
+        <span id="i18n-hero-quote">
+          「風の匂い、古木が語りかける呼吸。<br>
+          35年歩み続けたからこそ出会えた、誰も知らない美しき台湾原郷へご案内します。」
+        </span>
+      </blockquote>
+    </header>
+
+    <div class="section-block" style="padding-top: 0; padding-bottom: 0;">
+      <div class="specs-strip">
+        <div class="spec-item">
+          <div class="spec-icon">🌿</div>
+          <div class="spec-title" id="i18n-sp1-t">少人数催行</div>
+          <div class="spec-sub" id="i18n-sp1-s">4〜8名様限定</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">🚐</div>
+          <div class="spec-title" id="i18n-sp2-t">専用車/特急直行</div>
+          <div class="spec-sub" id="i18n-sp2-s">快適な移動をお約束</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">🛡️</div>
+          <div class="spec-title" id="i18n-sp3-t">原民会認定</div>
+          <div class="spec-sub" id="i18n-sp3-s">正規甲種旅行業</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 篇章 01：品牌哲學與手杖精神 -->
+    <section class="section-block">
+      <span class="sec-chapter">CHAPTER 01</span>
+      <h2 class="sec-title" id="i18n-c1-title">35年の旅路が紡ぐ、私だけの台湾。</h2>
+      
+      <p class="prose-text" id="i18n-c1-p1">
+        旅とは、単に名所を巡る移動ではありません。それは土地が長い歳月をかけて育んできた「記憶の気配」にそっと触れること。急ぎ足の観光地巡りでは決して味わえない、木漏れ日の揺らぎや大地に息づく先住民族の誇りを、親しい友人を案内するように温かく調律します。
+      </p>
+
+      <div class="brand-philosophy-card">
+        <svg class="staff-star-icon" viewBox="0 0 100 140">
+          <path d="M50 6 C51 15 52.5 21 55.5 25 C60 25.8 66 26 73 26.5 C66 28 60 29.2 56 31 C53.8 35 52 41 50 47 C48 41 46.2 35 44 31 C40 29.2 34 28 27 26.5 C34 26 40 25.8 44.5 25 C47.5 21 49 15 50 6 Z" fill="#C5A059"/>
+          <path d="M49 53.5 C45.8 63 39.5 75 30.5 86.5 C29.2 88.2 27.2 90 25.8 88.5 C24.5 86.8 26.2 85 27.8 83 C36 71.5 41.8 61 45 52.5 Z" fill="#FFF"/>
+          <path d="M51 53.5 C54.2 63 60.5 75 69.5 86.5 C70.8 88.2 72.8 90 74.2 88.5 C75.5 86.8 73.8 85 72.2 83 C64 71.5 58.2 61 55 52.5 Z" fill="#FFF"/>
+          <path d="M47.2 52.5 C48.8 52 51.2 52 52.8 52.5 C53.2 67 53.6 84 53.2 101 C52.8 116 53.2 126 52.6 133 C52.2 135.5 47.8 135.5 47.4 133 C46.8 126 47.2 116 46.8 101 C46.4 84 46.8 67 47.2 52.5 Z" fill="#FFF"/>
+        </svg>
+        <div class="bp-title" id="i18n-staff-title">✦ 原木の手杖と北極星の輝き</div>
+        <div class="bp-desc" id="i18n-staff-desc">
+          削り出された手杖は35年間の歩みと山林への敬意を象徴し、頂点の星芒は喧騒の時代において、揺るぎない文化探訪の方向を示す北極星を意味します。
+        </div>
+      </div>
+    </section>
+
+    <!-- 篇章 02：六大部落圖騰互動選單 -->
+    <section class="section-block" style="background: #F4EFE6;">
+      <span class="sec-chapter">CHAPTER 02</span>
+      <h2 class="sec-title" id="i18n-c2-title">大地と祖霊が宿る、台湾原住民族の紋様</h2>
+      <p class="prose-text" id="i18n-c2-p1">
+        台湾の山々に暮らす先住民族は、自然への敬意と祖霊の教えを幾何学の文様に刻み込んできました。ブースにて心惹かれる雪梨紙の紋様をお選びいただき、特別な祝福をお持ち帰りください：
+      </p>
+
+      <div class="totem-tab-grid">
+        <div class="totem-tab active" onclick="selectTotem(0)">
+          <svg class="totem-icon-svg" viewBox="0 0 32 32"><polygon points="16,2 30,16 16,30 2,16"/><circle cx="16" cy="16" r="3" fill="#C5A059"/></svg>
+          <div class="totem-name" id="t-name-0">タイヤル族</div>
+        </div>
+        <div class="totem-tab" onclick="selectTotem(1)">
+          <svg class="totem-icon-svg" viewBox="0 0 32 32"><path d="M3 14 L10 7 L17 14 L24 7 L31 14"/><path d="M3 23 L10 16 L17 23 L24 16 L31 23"/></svg>
+          <div class="totem-name" id="t-name-1">タロコ族</div>
+        </div>
+        <div class="totem-tab" onclick="selectTotem(2)">
+          <svg class="totem-icon-svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" stroke-dasharray="3 2"/><circle cx="16" cy="16" r="6"/><circle cx="16" cy="16" r="2" fill="#C5A059"/></svg>
+          <div class="totem-name" id="t-name-2">ブヌン族</div>
+        </div>
+        <div class="totem-tab" onclick="selectTotem(3)">
+          <svg class="totem-icon-svg" viewBox="0 0 32 32"><path d="M16 2 L19 12 L29 16 L19 20 L16 30 L13 20 L3 16 L13 12 Z"/></svg>
+          <div class="totem-name" id="t-name-3">アミ族</div>
+        </div>
+        <div class="totem-tab" onclick="selectTotem(4)">
+          <svg class="totem-icon-svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M10 16 C10 10 16 6 16 6 C16 6 22 10 22 16 C22 22 16 26 16 26 C16 26 10 22 10 16 Z"/></svg>
+          <div class="totem-name" id="t-name-4">ルカイ族</div>
+        </div>
+        <div class="totem-tab" onclick="selectTotem(5)">
+          <svg class="totem-icon-svg" viewBox="0 0 32 32"><rect x="7" y="7" width="18" height="18" rx="2" transform="rotate(45 16 16)"/><circle cx="16" cy="16" r="3" fill="#C5A059"/></svg>
+          <div class="totem-name" id="t-name-5">パイワン族</div>
+        </div>
+      </div>
+
+      <div class="totem-detail-box" id="totem-detail-content"></div>
+    </section>
+
+    <!-- 篇章 03：7大嚴選慢旅 ✕ 客製化私廚體驗 (中日切換) -->
+    <section class="section-block">
+      <span class="sec-chapter">CHAPTER 03</span>
+      <h2 class="sec-title" id="i18n-c3-title">莉梅姐が届ける、厳選ツアー＆オーダーメイド</h2>
+
+      <div class="journey-nav-tabs">
+        <button class="j-tab-btn active" onclick="switchJourney(0)" id="j-tab-0">🏹 里山リトリート</button>
+        <button class="j-tab-btn" onclick="switchJourney(1)" id="j-tab-1">🌸 桜樹下の茶席</button>
+        <button class="j-tab-btn" onclick="switchJourney(2)" id="j-tab-2">🚂 縦谷名湯の旅</button>
+        <button class="j-tab-btn" onclick="switchJourney(3)" id="j-tab-3">🌿 山海と呼吸する</button>
+        <button class="j-tab-btn" onclick="switchJourney(4)" id="j-tab-4" style="border-color:var(--c-gold); color:var(--c-gold-dark);">🌌 貸切：星空レストラン</button>
+        <button class="j-tab-btn" onclick="switchJourney(5)" id="j-tab-5" style="border-color:var(--c-gold); color:var(--c-gold-dark);">🪵 貸切：野食レストラン</button>
+        <button class="j-tab-btn" onclick="switchJourney(6)" id="j-tab-6" style="border-color:var(--c-gold); color:var(--c-gold-dark);">🍃 貸切：a mi nun</button>
+      </div>
+
+      <!-- 行程 0：泰雅里山修復 -->
+      <div class="journey-card active" id="journey-card-0">
+        <div class="jc-badge-row">
+          <span class="jc-badge jc-badge-gold" id="j0-b1">1泊2日・平日催行</span>
+          <span class="jc-badge jc-badge-dark" id="j0-b2">台北市内直行送迎</span>
+        </div>
+        <h3 class="jc-title" id="j0-title">タイヤル原郷の里山リトリート 2日間</h3>
+        <p class="jc-sub" id="j0-sub">伝統の手仕事・お守り作り × 水辺の静寂な宿</p>
+        <p class="jc-desc" id="j0-desc">
+          台北からわずか1.5時間、急峻な登山を伴わない穏やかな里山へ。天然紅檜の巨木林を歩き、幸運のビーズお守り作りや祝祭の餅つきを体験。夜は快適な水辺の宿で天然温泉に浸かり、日々の忙しさを解きほぐします。
+        </p>
+        <div class="jc-features" id="j0-feat">
+          ✨ <b>ハイライト</b>：レモングラス香る馬告豚肉、原生ハーブ刺葱料理、水辺の緑意リゾート宿、6名様より貸切可能。
+        </div>
+      </div>
+
+      <!-- 行程 1：白蘭櫻花茶席 -->
+      <div class="journey-card" id="journey-card-1">
+        <div class="jc-badge-row">
+          <span class="jc-badge jc-badge-gold" id="j1-b1">1泊2日・2027春限定</span>
+          <span class="jc-badge jc-badge-dark" id="j1-b2">シニア・女性歓迎</span>
+        </div>
+        <h3 class="jc-title" id="j1-title">桜の秘境雨｜桜樹下のタイヤル族マイクロツーリズム 2日間</h3>
+        <p class="jc-sub" id="j1-sub">満開の桜下で茶席 ✕ 澄んだ満天の星空 ✕ 幻想的な雲海遊歩道</p>
+        <p class="jc-desc" id="j1-desc">
+          標高約1,000mの新竹五峰・白蘭集落へ。舞い散る桜の下に特製茶席を広げ、素朴なスイーツとお茶を優雅に堪能。朝は雲海を臨む平坦な桜の遊歩道を散策。混雑を避けた平日限定の心豊かな時間です。
+        </p>
+        <div class="jc-features" id="j1-feat">
+          🌸 <b>限定予約枠</b>：2027年2月中旬〜3月上旬（昭和桜・富士桜の見頃期）、足腰に優しい平坦コース。
+        </div>
+      </div>
+
+      <!-- 行程 2：低碳縱谷雙湯 -->
+      <div class="journey-card" id="journey-card-2">
+        <div class="jc-badge-row">
+          <span class="jc-badge jc-badge-gold" id="j2-b1">2泊3日・低炭素鉄道旅</span>
+          <span class="jc-badge jc-badge-dark" id="j2-b2">1名様より申込可</span>
+        </div>
+        <h3 class="jc-title" id="j2-title">低炭素な縦谷・二大名湯の旅 3日間</h3>
+        <p class="jc-sub" id="j2-sub">台湾鉄道特急電車 ✕ お米アート ✕ 百年弱アルカリ泉と知本温泉</p>
+        <p class="jc-desc" id="j2-desc">
+          長距離バスの揺れを避け、特急電車でCO2排出を大幅削減。織羅集落で大地の実りを描くお米アートを体験し、無囲壁の森林博物館で世界的な多声合唱「八部合音」の響きに包まれます。
+        </p>
+        <div class="jc-features" id="j2-feat">
+          🚂 <b>サステナブルツーリズム</b>：地産地消の旬野菜、百年の歴史を誇る名湯、最大20名様限定のゆとり旅。
+        </div>
+      </div>
+
+      <!-- 行程 3：橫跨山海縱貫 -->
+      <div class="journey-card" id="journey-card-3">
+        <div class="jc-badge-row">
+          <span class="jc-badge jc-badge-gold" id="j3-b1">7泊8日・深層グランドツアー</span>
+          <span class="jc-badge jc-badge-dark" id="j3-b2">プライベートハイヤー</span>
+        </div>
+        <h3 class="jc-title" id="j3-title">山海と呼吸する・四大多元民族を巡る深層の旅 8日間</h3>
+        <p class="jc-sub" id="j3-sub">パイワン ✕ ルカイ ✕ ブヌン ✕ タイヤル 四大先住民族を縦断</p>
+        <p class="jc-desc" id="j3-desc">
+          台湾を縦断する最高峰のフラッグシップツアー。一般規制区域の棲蘭130線で巨大ヒノキ原生林を歩き、礼納里で伝統の厄払い儀式を体験。火山灰土壌の自家焙煎珈琲を味わい、莉梅姐が全行程温かく寄り添います。
+        </p>
+        <div class="jc-features" id="j3-feat">
+          🌿 <b>極上の手配力</b>：新幹線と専用車のシームレスな接続、伝統石板屋のプライベート夕食、水辺のリゾートホテル滞在。
+        </div>
+      </div>
+
+      <!-- 行程 4：烏尼囊 獵人星空餐桌 -->
+      <div class="journey-card" id="journey-card-4">
+        <div class="jc-badge-row">
+          <span class="jc-badge jc-badge-accent" id="j4-b1">6名様より貸切可能</span>
+          <span class="jc-badge jc-badge-gold" id="j4-b2">3月〜10月限定</span>
+        </div>
+        
+        <div class="jc-hero-img-box">
+          <img class="jc-hero-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/satoyama-indigenous/main/%E7%8D%B5%E4%BA%BA%E6%98%9F%E7%A9%BA%E9%A4%90%E6%A1%8C_%E5%B1%B1%E5%B7%94%E5%A4%9C%E6%99%AF.jpg" onerror="this.src='https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80'" alt="星空レストラン夜景">
+          <div class="jc-hero-caption" id="j4-img-cap">✦ 永康集落の山頂：花東縦谷の夜景と焚き火の祈り</div>
+        </div>
+
+        <h3 class="jc-title" id="j4-title">【ウニナン・星空レストラン】山頂の野宴 × 縦谷の星夜</h3>
+        <p class="jc-sub" id="j4-sub">黄昏の入山祈祷 ✕ 獣径トレイル ✕ 満天の星空の下の歌声</p>
+        <p class="jc-desc" id="j4-desc">
+          台東延平郷永康集落での贅沢なトワイライトツアー。午後専用車で山頂へ登り、伝統衣装を身にまとって入山儀式に参加。夜は山頂から見下ろす縦谷の煌めく夜景とともに、木の温もりあふれる回廊で直火焼き料理と勇士の凱旋歌を堪能します。
+        </p>
+        <div class="jc-features" id="j4-feat">
+          🌌 <b>オーダーメイド仕様</b>：約6時間の完全没入、9人乗り専用車送迎、ブヌン族の祈祷と伝統合唱、星空の下のプライベートディナー。
+        </div>
+      </div>
+
+      <!-- 行程 5：烏尼囊 獵人野食餐桌 -->
+      <div class="journey-card" id="journey-card-5">
+        <div class="jc-badge-row">
+          <span class="jc-badge jc-badge-accent" id="j5-b1">6名様より貸切可能</span>
+          <span class="jc-badge jc-badge-dark" id="j5-b2">日中ディープ自然体験</span>
+        </div>
+        <h3 class="jc-title" id="j5-title">【ウニナン・野食レストラン】祈りの歌声 × 炭火焼きジビエ</h3>
+        <p class="jc-sub" id="j5-sub">朝の入山儀式 ✕ 狩人トレイル探索 ✕ ウコン餅つき体験</p>
+        <p class="jc-desc" id="j5-desc">
+          森の狩人の日常へ踏み込む旅。長老とともに山神へ祈りを捧げ、壁のない森で獣の足跡や植物の知恵を学び、伝統の弓矢や槍投げを体験。昼食は直火でじっくり焼き上げる香ばしい郷土料理と、搗きたての温かいウコン餅を味わいます。
+        </p>
+        <div class="jc-features" id="j5-feat">
+          🪵 <b>オーダーメイド仕様</b>：約6時間の日中体験、伝統衣装着用、八部合音と凱旋体験、森の香りに包まれる風土ガストロノミー。
+        </div>
+      </div>
+
+      <!-- 行程 6：烏尼囊 a mi nun 部落餐桌 -->
+      <div class="journey-card" id="journey-card-6">
+        <div class="jc-badge-row">
+          <span class="jc-badge jc-badge-accent" id="j6-b1">6名様より貸切可能</span>
+          <span class="jc-badge jc-badge-gold" id="j6-b2">約3.5時間の半日満喫</span>
+        </div>
+        <h3 class="jc-title" id="j6-title">【ウニナン・a mi nun 大地レストラン】自然への深い感謝</h3>
+        <p class="jc-sub" id="j6-sub">百年樹齢の神木巡り ✕ 伝統ベル体験 ✕ 食事をすべて美味しく完食</p>
+        <p class="jc-desc" id="j6-desc">
+          天地自然の恵みに心からの感謝を。百年を超えるアカギの神木の下で祈りを捧げ、伝統の弓矢を体験。ブヌン族の温かく豪快なもてなしのもと、芭蕉の葉を敷いたテーブルで土地の知恵が詰まった料理を美味しく食べ尽くします（a mi nun）！
+        </p>
+        <div class="jc-features" id="j6-feat">
+          🍃 <b>オーダーメイド仕様</b>：ご家族や小グループに最適な半日プラン、神木祈祷の歌声、ハーバード大学合唱団も体験した国際水準の文化交流。
+        </div>
+      </div>
+    </section>
+
+    <!-- 篇章 04：五感伴手禮信物 -->
+    <section class="section-block" style="background: #FFF;">
+      <span class="sec-chapter">CHAPTER 04</span>
+      <h2 class="sec-title" id="i18n-c4-title">森の気配を宿す、文化の信物</h2>
+      <p class="prose-text" id="i18n-c4-desc">
+        アンジェがご用意したプレゼントは、450gのドイツ製無酸コットンカードに天然台湾高山ヒノキ精油を噴霧し、お選びいただいた雪梨紙の紋様とともに透明PPバッグに入れ、金箔のロゴシールで封をした特別な蔵書票です。手帳や本に挟んで、いつでも台湾の静かな森の呼吸を感じてください。
+      </p>
+    </section>
+
+    <footer class="footer-endorse">
+      <p><strong id="i18n-ft-agent">台湾・安捷國際旅行社有限公司 ENVOY TRAVEL</strong></p>
+      <p id="i18n-ft-reg">交通部観光署 登録旅行業 甲種 5920 号 ｜ 統一番号：16169138</p>
+      <p style="margin-top: 4px; color: var(--c-gold-dark);" id="i18n-ft-cip">☀️【公認・推薦】台湾 原住民族委員会 認定パートナーシップ企業</p>
+      <p style="margin-top: 8px; font-size: 10px; opacity: 0.6;">© 2026 ENVOY TRAVEL. All Rights Reserved.</p>
+    </footer>
+
+    <div class="bottom-bar">
+      <a href="mailto:service@envoytravel.com.tw?subject=【東京旅展2026】台湾旅行・お問合せ" class="bar-btn btn-mail" id="i18n-btn-b2b">
+        ✉ メールでお問合せ (B2B)
+      </a>
+      <a href="https://lin.ee/Z3c7Qam" target="_blank" class="bar-btn btn-line" id="i18n-btn-b2c">
+        💬 LINEで相談する (B2C)
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    // 6 大圖騰多語資料庫（日語 / 繁中）
+    const totemDB = {
+      ja: [
+        { name: "タイヤル族 ‧ Atayal", sym: "祖霊の瞳（二重菱形）", desc: "星のように見守る祖霊の掟（Gaga）を象徴し、山林へ足を踏み入れるすべての旅人の道中安全を静かに見守ります。" },
+        { name: "タロコ族 ‧ Truku", sym: "虹の橋（山岳の折線）", desc: "立霧渓谷にかかる神聖な約束。自然を尊び、心清らかな者だけが渡り祖霊と再び出逢えると伝えられています。" },
+        { name: "ブヌン族 ‧ Bunun", sym: "歳時暦（年輪の同心円）", desc: "玉山の狩人が四季の巡りに従って刻んだ木刻暦。森と調和し、豊かな実りと調和をもたらす知恵です。" },
+        { name: "アミ族 ‧ Amis", sym: "八角星（母なる光芒）", desc: "太平洋の海風を受ける母性豊かな太陽の光。家族と集落を温かく照らし、大地の豊かな恵みを象徴します。" },
+        { name: "ルカイ族 ‧ Rukai", sym: "百合の花（高潔なる栄誉）", desc: "黒石板の集落に受け継がれる最高の栄誉。高潔な徳を持ち、土地を愛する勇士だけに佩用が許される花です。" },
+        { name: "パイワン族 ‧ Paiwan", sym: "百歩蛇紋（神聖な守護）", desc: "大武山の麓、頭目の家屋に刻まれる神聖な紋様。木彫やガラス玉に宿る深遠な生命哲学を表します。" }
+      ],
+      zh: [
+        { name: "泰雅族 ‧ Atayal", sym: "祖靈之眼（雙重菱格）", desc: "象徵祖靈如繁星般的凝視與戒律（Gaga），守護每位踏入山林的行路者平安歸來。" },
+        { name: "太魯閣族 ‧ Truku", sym: "彩虹之橋（山岳折線）", desc: "橫跨立霧溪谷的永恆約定，唯有勇敢守護山林、心靈純淨者方能跨越彩虹橋與祖先相聚。" },
+        { name: "布農族 ‧ Bunun", sym: "歲時年輪（板曆同心圓）", desc: "玉山獵人順應四季節奏的古老木刻板曆，以崇敬之心在山林間共鳴震撼人心的八部合音。" },
+        { name: "阿美族 ‧ Amis", sym: "太陽八角星（生命光芒）", desc: "面向太平洋海岸山脈的母系之光，象徵母親如驕陽般守護家庭部落與大地野菜豐收。" },
+        { name: "魯凱族 ‧ Rukai", sym: "百合聖花（榮譽象徵）", desc: "深居黑石板古老聚落的榮譽徽記，唯有品德崇高、庇護土地的勇士方得佩戴聖潔百合。" },
+        { name: "排灣族 ‧ Paiwan", sym: "百步蛇紋（神聖守護）", desc: "大武山麓古老頭目家屋的尊貴圖騰，凝聚木雕、琉璃珠與陶壺的深厚生命哲學。" }
+      ]
+    };
+
+    // 介面全域字典（預設為日文 ja，可無縫切換繁中 zh）
+    const i18n = {
+      ja: {
+        navRegSub: "安捷旅遊 ‧ 甲種 5920 號",
+        magTag: "Special Editorial ‧ 旅の案内人",
+        heroName: "莉梅姐（メイ姉さん）",
+        heroRole: "専属トラベルコンサルタント ｜ 旅の案内人 35年",
+        heroQuote: "「風の匂い、古木が語りかける呼吸。<br>35年歩み続けたからこそ出会えた、誰も知らない美しき台湾原郷へご案内します。」",
+        sp1T: "少人数催行", sp1S: "4〜8名様限定",
+        sp2T: "専用車/特急直行", sp2S: "快適な移動をお約束",
+        sp3T: "原民会認定", sp3S: "正規甲種旅行業",
+        c1Title: "35年の旅路が紡ぐ、私だけの台湾。",
+        c1P1: "旅とは、単に名所を巡る移動ではありません。それは土地が長い歳月をかけて育んできた「記憶の気配」にそっと触れること。急ぎ足の観光地巡りでは決して味わえない、木漏れ日の揺らぎや大地に息づく先住民族の誇りを、親しい友人を案内するように温かく調律します。",
+        staffTitle: "✦ 原木の手杖と北極星の輝き",
+        staffDesc: "削り出された手杖は35年間の歩みと山林への敬意を象徴し、頂点の星芒は喧騒の時代において、揺るぎない文化探訪の方向を示す北極星を意味します。",
+        c2Title: "大地と祖霊が宿る、台湾原住民族の紋様",
+        c2P1: "台湾の山々に暮らす先住民族は、自然への敬意と祖霊の教えを幾何学の文様に刻み込んできました。ブースにて心惹かれる雪梨紙の紋様をお選びいただき、特別な祝福をお持ち帰りください：",
+        c3Title: "莉梅姐が届ける、厳選ツアー＆オーダーメイド",
+        jTab0: "🏹 里山リトリート", jTab1: "🌸 桜樹下の茶席", jTab2: "🚂 縦谷名湯の旅", jTab3: "🌿 山海と呼吸する",
+        jTab4: "🌌 貸切：星空レストラン", jTab5: "🪵 貸切：野食レストラン", jTab6: "🍃 貸切：a mi nun",
+
+        j0B1: "1泊2日・平日催行", j0B2: "台北市内直行送迎",
+        j0Title: "タイヤル原郷の里山リトリート 2日間",
+        j0Sub: "伝統の手仕事・お守り作り × 水辺の静寂な宿",
+        j0Desc: "台北からわずか1.5時間、急峻な登山を伴わない穏やかな里山へ。天然紅檜の巨木林を歩き、幸運のビーズお守り作りや祝祭の餅つきを体験。夜は快適な水辺の宿で天然温泉に浸かり、日々の忙しさを解きほぐします。",
+        j0Feat: "✨ <b>ハイライト</b>：レモングラス香る馬告豚肉、原生ハーブ刺葱料理、水辺の緑意リゾート宿、6名様より貸切可能。",
+
+        j1B1: "1泊2日・2027春限定", j1B2: "シニア・女性歓迎",
+        j1Title: "桜の秘境雨｜桜樹下のタイヤル族マイクロツーリズム 2日間",
+        j1Sub: "満開の桜下で茶席 ✕ 澄んだ満天の星空 ✕ 幻想的な雲海遊歩道",
+        j1Desc: "標高約1,000mの新竹五峰・白蘭集落へ。舞い散る桜の下に特製茶席を広げ、素朴なスイーツとお茶を優雅に堪能。朝は雲海を臨む平坦な桜の遊歩道を散策。混雑を避けた平日限定の心豊かな時間です。",
+        j1Feat: "🌸 <b>限定予約枠</b>：2027年2月中旬〜3月上旬（昭和桜・富士桜の見頃期）、足腰に優しい平坦コース。",
+
+        j2B1: "2泊3日・低炭素鉄道旅", j2B2: "1名様より申込可",
+        j2Title: "低炭素な縦谷・二大名湯の旅 3日間",
+        j2Sub: "台湾鉄道特急電車 ✕ お米アート ✕ 百年弱アルカリ泉と知本温泉",
+        j2Desc: "長距離バスの揺れを避け、特急電車でCO2排出を大幅削減。織羅集落で大地の実りを描くお米アートを体験し、無囲壁の森林博物館で世界的な多声合唱「八部合音」の響きに包まれます。",
+        j2Feat: "🚂 <b>サステナブルツーリズム</b>：地産地消の旬野菜、百年の歴史を誇る名湯、最大20名様限定のゆとり旅。",
+
+        j3B1: "7泊8日・深層グランドツアー", j3B2: "プライベートハイヤー",
+        j3Title: "山海と呼吸する・四大多元民族を巡る深層の旅 8日間",
+        j3Sub: "パイワン ✕ ルカイ ✕ ブヌン ✕ タイヤル 四大先住民族を縦断",
+        j3Desc: "台湾を縦断する最高峰のフラッグシップツアー。一般規制区域の棲蘭130線で巨大ヒノキ原生林を歩き、礼納里で伝統の厄払い儀式を体験。火山灰土壌の自家焙煎珈琲を味わい、莉梅姐が全行程温かく寄り添います。",
+        j3Feat: "🌿 <b>極上の手配力</b>：新幹線と専用車のシームレスな接続、伝統石板屋のプライベート夕食、水辺のリゾートホテル滞在。",
+
+        j4B1: "6名様より貸切可能", j4B2: "3月〜10月限定",
+        j4ImgCap: "✦ 永康集落の山頂：花東縦谷の夜景と焚き火の祈り",
+        j4Title: "【ウニナン・星空レストラン】山頂の野宴 × 縦谷の星夜",
+        j4Sub: "黄昏の入山祈祷 ✕ 獣径トレイル ✕ 満天の星空の下の歌声",
+        j4Desc: "台東延平郷永康集落での贅沢なトワイライトツアー。午後専用車で山頂へ登り、伝統衣装を身にまとって入山儀式に参加。夜は山頂から見下ろす縦谷の煌めく夜景とともに、木の温もりあふれる回廊で直火焼き料理と勇士の凱旋歌を堪能します。",
+        j4Feat: "🌌 <b>オーダーメイド仕様</b>：約6時間の完全没入、9人乗り専用車送迎、ブヌン族の祈祷と伝統合唱、星空の下のプライベートディナー。",
+
+        j5B1: "6名様より貸切可能", j5B2: "日中ディープ自然体験",
+        j5Title: "【ウニナン・野食レストラン】祈りの歌声 × 炭火焼きジビエ",
+        j5Sub: "朝の入山儀式 ✕ 狩人トレイル探索 ✕ ウコン餅つき体験",
+        j5Desc: "森の狩人の日常へ踏み込む旅。長老とともに山神へ祈りを捧げ、壁のない森で獣の足跡や植物の知恵を学び、伝統の弓矢や槍投げを体験。昼食は直火でじっくり焼き上げる香ばしい郷土料理と、搗きたての温かいウコン餅を味わいます。",
+        j5Feat: "🪵 <b>オーダーメイド仕様</b>：約6時間の日中体験、伝統衣装着用、八部合音と凱旋体験、森の香りに包まれる風土ガストロノミー。",
+
+        j6B1: "6名様より貸切可能", j6B2: "約3.5時間の半日満喫",
+        j6Title: "【ウニナン・a mi nun 大地レストラン】自然への深い感謝",
+        j6Sub: "百年樹齢の神木巡り ✕ 伝統ベル体験 ✕ 食事をすべて美味しく完食",
+        j6Desc: "天地自然の恵みに心からの感謝を。百年を超えるアカギの神木の下で祈りを捧げ、伝統の弓矢を体験。ブヌン族の温かく豪快なもてなしのもと、芭蕉の葉を敷いたテーブルで土地の知恵が詰まった料理を美味しく食べ尽くします（a mi nun）！",
+        j6Feat: "🍃 <b>オーダーメイド仕様</b>：ご家族や小グループに最適な半日プラン、神木祈祷の歌声、ハーバード大学合唱団も体験した国際水準の文化交流。",
+
+        c4Title: "森の気配を宿す、文化の信物",
+        c4Desc: "アンジェがご用意したプレゼントは、450gのドイツ製無酸コットンカードに天然台湾高山ヒノキ精油を噴霧し、お選びいただいた雪梨紙の紋様とともに透明PPバッグに入れ、金箔のロゴシールで封をした特別な蔵書票です。手帳や本に挟んで、いつでも台湾の静かな森の呼吸を感じてください。",
+
+        ftAgent: "台湾・安捷國際旅行社有限公司 ENVOY TRAVEL",
+        ftReg: "交通部観光署 登録旅行業 甲種 5920 号 ｜ 統一番号：16169138",
+        ftCip: "☀️【公認・推薦】台湾 原住民族委員会 認定パートナーシップ企業",
+        btnB2B: "✉ メールでお問合せ (B2B)",
+        btnB2C: "💬 LINEで相談する (B2C)"
+      },
+      zh: {
+        navRegSub: "安捷旅遊 ‧ 甲種 5920 號",
+        magTag: "SPECIAL EDITORIAL ‧ 文化的引路人",
+        heroName: "莉梅姐 Mei Chang",
+        heroRole: "專屬旅行顧問 ｜ 慢旅引路人 35年資歷",
+        heroQuote: "「山風的氣息，古樹輕柔的呼吸。<br>正因深刻行走了三十五年，才得以領您遇見那片未曾被喧囂打擾的深邃原鄉。」",
+        sp1T: "4～8人成行", sp1S: "不驚擾部落秩序",
+        sp2T: "專車接送/高鐵", sp2S: "免除開山路疲勞",
+        sp3T: "原民會推薦", sp3S: "合法甲種履約保障",
+        c1Title: "文化的引路人與同行者",
+        c1P1: "旅行，從來不只是名勝打卡，而是一場與土地沈積千百年的「時光記憶」靜謐相逢。安捷旅遊定位為「文化的引路人與同行者（The Wayfarer & Cultural Envoy）」，摒棄傳統大巴走馬看花的喧擾，專注於台灣高山生態、巨木森林與原住民族的大地共生哲學。",
+        staffTitle: "✦ 削切原木手杖與北極星芒",
+        staffDesc: "手杖象徵莉梅姐 35 年引路積澱與敬畏山林的步履；頂部璀璨的星芒，代表在喧囂世代中，堅定指引深度人文探索方向的北極星。",
+        c2Title: "土地與祖靈的幾何印記",
+        c2P1: "台灣原住民族將自然崇敬與祖訓刻入幾何圖騰。在現場請挑選一張觸動您的雪梨紙紋樣，收穫專屬山林祝福：",
+        c3Title: "莉梅姐私藏 ‧ 精選慢旅與客製專區",
+        jTab0: "🏹 泰雅里山", jTab1: "🌸 白蘭櫻花", jTab2: "🚂 縱谷雙湯", jTab3: "🌿 山海呼吸",
+        jTab4: "🌌 客製：星空餐桌", jTab5: "🪵 客製：野食餐桌", jTab6: "🍃 客製：a mi nun",
+
+        j0B1: "2 Days ‧ 平日限定", j0B2: "台北專車直達接送",
+        j0Title: "【山林獵人修復之旅】泰雅秘境探索 × 深度部落二日遊",
+        j0Sub: "祖靈之眼守護手作 ✕ 純樸田園家常 ✕ 靜謐水岸宿",
+        j0Desc: "台北出發僅1.5小時即可抵達。免除翻山越嶺負擔，漫步原始紅檜木林間，親手穿起開運祖靈串珠飾品，體驗木臼現搗迎賓麻糬，晚間下榻靜謐水岸空間，在自然熱泉中洗去日常疲勞。",
+        j0Feat: "✨ <b>亮點特色</b>：天然馬告山豬肉、時令原生刺蔥料理、水岸綠意森林旅宿、6人成行獨立包團。",
+
+        j1B1: "2 Days ‧ 2027春季限定", j1B2: "樂活銀髮友善",
+        j1Title: "【原鄉櫻花雨】櫻花樹下的泰雅微旅行 2日遊",
+        j1Sub: "櫻花樹下泰雅茶席 ✕ 高山純淨星空 ✕ 雲海步道悠晃",
+        j1Desc: "深入新竹五峰海拔千公尺的白蘭世外桃源。午後在盛開櫻花樹冠下鋪設茶席、慢品部落茶點；清晨在粉紅花海與浩瀚雲海間漫步。堅持平日出團，避開假日人潮人聲鼎沸。",
+        j1Feat: "🌸 <b>限定梯次預約</b>：2027年2月中旬至3月上旬（昭和櫻、富士櫻滿開期），平緩步道不累腳。",
+
+        j2B1: "3 Days ‧ 低碳永續鐵道", j2B2: "一人即可報名",
+        j2Title: "【低碳縱谷・雙湯慢旅】花東原鄉 3天2夜",
+        j2Sub: "台鐵新自強號城際列車 ✕ 彩繪米餐桌 ✕ 百年雙名湯",
+        j2Desc: "以綠色鐵道替代長途拉車，降低 65% 交通碳排。在織羅部落將紅藜與稻糧拼繪成大地畫布；走進鸞山無圍牆森林博物館聆聽震撼的布農族八部合音，享受安通與知本溫泉極致療癒。",
+        j2Feat: "🚂 <b>永續食育承諾</b>：產地直送零距離食材、百年歷史弱鹼性野溪溫泉、上限20人封頂精緻團。",
+
+        j3B1: "8 Days ‧ 深度縱貫行旅", j3B2: "頂級私廚與文化尋根",
+        j3Title: "【跟著山海去呼吸】從排灣斜坡到泰雅秘境 8日心靈行旅",
+        j3Sub: "排灣 ✕ 魯凱 ✕ 布農 ✕ 泰雅 四大族群深度縱貫",
+        j3Desc: "橫跨台灣山海的極致旗艦巡禮。深入棲蘭 130 線管制區見證參天神木群；在禮納里聚落參與傳統過火祈福儀式；在吳拉魯滋品味手烘火山阿拉比卡咖啡，並由莉梅姐全程隨團溫暖守護。",
+        j3Feat: "🌿 <b>高規格尊榮配置</b>：全程舒適專車與高鐵銜接、部落傳統石板屋私房款待、水岸森林會館沉浸住宿。",
+
+        j4B1: "6人成行客製", j4B2: "每年3月-10月限定",
+        j4ImgCap: "✦ 永康部落山巔：縱谷星夜與營火祈福之夜",
+        j4Title: "【烏尼囊 ‧ 獵人星空餐桌】山巔野宴 × 縱谷星夜",
+        j4Sub: "黃昏入山敬拜 ✕ 獵徑獸跡導引 ✕ 星空下的祈福之音",
+        j4Desc: "台東延平鄉永康部落的極致黃昏與夜間巡禮。午後集合接駁上山，由獵人引領入山祈福儀式、穿搭傳統原民服飾。入夜後在山巔俯瞰縱谷萬家燈火與暮光雲海，享受星空木造長廊下的柴燒野宴與傳統報戰功。",
+        j4Feat: "🌌 <b>客製專屬模組</b>：約6小時完整沉浸、9人座專車接駁、布農族長老祈福與報戰功、星空私房柴燒料理（每年3月至10月限定）。",
+
+        j5B1: "6人成行客製", j5B2: "日間深度自然野趣",
+        j5Title: "【烏尼囊 ‧ 獵人野食餐桌】祈福之音 × 炭火烤山珍",
+        j5Sub: "清晨入山儀式 ✕ 獵徑循跡 ✕ 薑黃糯米搗麻糬",
+        j5Desc: "走進山林獵人的生活日常。跟隨長老敬拜山神、踏入無圍牆的獵徑學習辨識獸徑廊道，親手體驗射箭與擲矛。中午圍坐享用獵人直火炭烤柴燒佳餚，並以木杵敲打熱騰騰的薑黃糯米麻糬。",
+        j5Feat: "🪵 <b>客製專屬模組</b>：約6小時日間深探、傳統服飾體驗、報戰功與祈福之音共鳴、天然山林香氛野食。",
+
+        j6B1: "6人成行客製", j6B2: "約3.5小時半日精華",
+        j6Title: "【烏尼囊 ‧ a mi nun 部落餐桌】豪邁感恩大地",
+        j6Sub: "百年茄苳神木導覽 ✕ 拉噹噹體驗 ✕ 把美食通通吃光",
+        j6Desc: "對自然天地懷抱最真摯的感謝！漫步至百年神木茄苳樹下祈福，體驗傳統拉噹噹與射箭。午間或傍晚以布農族最熱情豪邁的姿態，在芭蕉葉長桌前把融入山林智慧的風土料理通通吃光（a mi nun）！",
+        j6Feat: "🍃 <b>客製專屬模組</b>：適合親友包團半日文化饗宴、百年神木祈福之音、哈佛合唱團等國際貴賓同款體驗。",
+
+        c4Title: "山林氣息的文化信物",
+        c4Desc: "安捷為您準備的現場禮遇，是由 450g 德國純棉無酸卡噴附「台灣天然高山紅檜精油」，並襯上您親選的 17g 半透明雪梨紙圖騰，裝入透明 PP 袋、以燙金 Logo 圓貼封口的藏書票信物。夾在手帳或書頁間，隨時能重溫中央山脈深處的純淨呼吸。",
+
+        ftAgent: "安捷國際旅行社有限公司 ENVOY TRAVEL",
+        ftReg: "交通部觀光署 註冊旅行業 甲種 5920 號 ｜ 統編：16169138",
+        ftCip: "☀️【官方推薦】行政院原住民族委員會認證合作夥伴",
+        btnB2B: "✉ 電子郵件洽詢 (B2B)",
+        btnB2C: "💬 LINE 專人諮詢"
+      }
+    };
+
+    let currentLang = 'ja'; // 預設以日文迎接東京旅展買家
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const dict = i18n[lang];
+
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+
+      if (lang === 'zh') {
+        document.body.classList.add('lang-zh-active');
+        document.documentElement.lang = 'zh-TW';
+      } else {
+        document.body.classList.remove('lang-zh-active');
+        document.documentElement.lang = 'ja';
+      }
+
+      document.getElementById('nav-reg-sub').innerText = dict.navRegSub;
+      document.getElementById('i18n-mag-tag').innerText = dict.magTag;
+      document.getElementById('i18n-hero-name').innerText = dict.heroName;
+      document.getElementById('i18n-hero-role').innerText = dict.heroRole;
+      document.getElementById('i18n-hero-quote').innerHTML = dict.heroQuote;
+
+      document.getElementById('i18n-sp1-t').innerText = dict.sp1T;
+      document.getElementById('i18n-sp1-s').innerText = dict.sp1S;
+      document.getElementById('i18n-sp2-t').innerText = dict.sp2T;
+      document.getElementById('i18n-sp2-s').innerText = dict.sp2S;
+      document.getElementById('i18n-sp3-t').innerText = dict.sp3T;
+      document.getElementById('i18n-sp3-s').innerText = dict.sp3S;
+
+      document.getElementById('i18n-c1-title').innerText = dict.c1Title;
+      document.getElementById('i18n-c1-p1').innerText = dict.c1P1;
+      document.getElementById('i18n-staff-title').innerText = dict.staffTitle;
+      document.getElementById('i18n-staff-desc').innerText = dict.staffDesc;
+
+      document.getElementById('i18n-c2-title').innerText = dict.c2Title;
+      document.getElementById('i18n-c2-p1').innerText = dict.c2P1;
+
+      for(let i=0; i<6; i++) {
+        document.getElementById(`t-name-${i}`).innerText = totemDB[lang][i].name.split(' ')[0];
+      }
+      selectTotem(currentTotemIdx);
+
+      document.getElementById('i18n-c3-title').innerText = dict.c3Title;
+      for(let i=0; i<7; i++) {
+        document.getElementById(`j-tab-${i}`).innerText = dict[`jTab${i}`];
+        document.getElementById(`j${i}-b1`).innerText = dict[`j${i}B1`];
+        document.getElementById(`j${i}-b2`).innerText = dict[`j${i}B2`];
+        document.getElementById(`j${i}-title`).innerText = dict[`j${i}Title`];
+        document.getElementById(`j${i}-sub`).innerText = dict[`j${i}Sub`];
+        document.getElementById(`j${i}-desc`).innerText = dict[`j${i}Desc`];
+        document.getElementById(`j${i}-feat`).innerHTML = dict[`j${i}Feat`];
+      }
+
+      document.getElementById('j4-img-cap').innerText = dict.j4ImgCap;
+
+      document.getElementById('i18n-c4-title').innerText = dict.c4Title;
+      document.getElementById('i18n-c4-desc').innerText = dict.c4Desc;
+
+      document.getElementById('i18n-ft-agent').innerText = dict.ftAgent;
+      document.getElementById('i18n-ft-reg').innerText = dict.ftReg;
+      document.getElementById('i18n-ft-cip').innerText = dict.ftCip;
+      document.getElementById('i18n-btn-b2b').innerText = dict.btnB2B;
+      document.getElementById('i18n-btn-b2c').innerText = dict.btnB2C;
+    }
+
+    let currentTotemIdx = 0;
+    function selectTotem(idx) {
+      currentTotemIdx = idx;
+      const tabs = document.querySelectorAll('.totem-tab');
+      tabs.forEach((tab, i) => tab.classList.toggle('active', i === idx));
+
+      const data = totemDB[currentLang][idx];
+      const box = document.getElementById('totem-detail-content');
+      box.innerHTML = `
+        <div style="font-weight:700; color:var(--c-navy); margin-bottom:4px; font-size:13px;">${data.name} ｜ ${data.sym}</div>
+        <div style="color:#555;">${data.desc}</div>
+      `;
+    }
+
+    function switchJourney(idx) {
+      const tabs = document.querySelectorAll('.j-tab-btn');
+      tabs.forEach((btn, i) => btn.classList.toggle('active', i === idx));
+
+      for (let i = 0; i < 7; i++) {
+        const card = document.getElementById(`journey-card-${i}`);
+        if (card) card.classList.toggle('active', i === idx);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage('ja'); // 初始以日文開啟
+    });
+  </script>
+</body>
+</html>
