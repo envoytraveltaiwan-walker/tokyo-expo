@@ -288,7 +288,6 @@
       animation: fadeIn 0.3s ease;
     }
 
-    /* 支援觸控與滑鼠平滑左右滑動的行程標籤列 */
     .journey-nav-tabs-wrapper {
       position: relative;
       margin-bottom: 14px;
@@ -366,6 +365,21 @@
       line-height: 1.7;
     }
 
+    /* 6人成行行動指引提示框 */
+    .charter-action-box {
+      background: #F2EFE9;
+      border: 1px dashed var(--c-gold);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11.5px;
+      color: var(--c-navy);
+      line-height: 1.75;
+      margin-top: 10px;
+    }
+    .charter-action-box strong {
+      color: #A62122;
+    }
+
     .jc-hero-img-box {
       width: 100%;
       height: 175px;
@@ -406,28 +420,58 @@
     .spec-title { font-size: 11px; font-weight: 700; color: var(--c-navy); }
     .spec-sub { font-size: 9px; color: #777; }
 
-    /* 禮品與雪梨紙專屬質感方塊 */
-    .gift-showcase-box {
-      background: #FAF8F5;
-      border: 1px solid var(--c-border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 10px;
+    .editor-column-box {
+      background: #FFFDF9;
+      border: 1px solid var(--c-gold-soft);
+      border-radius: 12px;
+      padding: 20px 18px;
+      margin-top: 14px;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(197, 160, 89, 0.08);
     }
-    .gift-item-title {
-      font-size: 13px;
+    .editor-tag {
+      font-family: var(--font-en);
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      color: var(--c-gold-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .editor-lead {
+      font-size: 14.5px;
       font-weight: 700;
       color: var(--c-navy);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-    .gift-item-desc {
-      font-size: 12px;
-      color: #555;
-      line-height: 1.8;
+      line-height: 1.6;
       margin-bottom: 12px;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+      padding-bottom: 8px;
+    }
+    .editor-body {
+      font-size: 12.5px;
+      line-height: 2.1;
+      color: #3A3A3A;
+      text-align: justify;
+      margin-bottom: 14px;
+    }
+    .editor-usage-list {
+      background: var(--c-paper);
+      border-left: 2.5px solid var(--c-gold);
+      padding: 12px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 11.5px;
+      line-height: 1.85;
+      color: #4A4A4A;
+    }
+    .editor-sign {
+      text-align: right;
+      font-family: var(--font-en);
+      font-size: 11px;
+      color: var(--c-gold-dark);
+      font-weight: 600;
+      margin-top: 12px;
+      letter-spacing: 0.05em;
     }
 
     .footer-endorse {
@@ -501,7 +545,6 @@
         </div>
       </a>
 
-      <!-- 中日語言即時切換鍵 -->
       <div class="lang-switcher">
         <button class="lang-btn active" id="btn-ja" onclick="setLanguage('ja')">日本語</button>
         <button class="lang-btn" id="btn-zh" onclick="setLanguage('zh')">繁中</button>
@@ -607,7 +650,7 @@
       <div class="totem-detail-box" id="totem-detail-content"></div>
     </section>
 
-    <!-- 篇章 03：7大嚴選慢旅 ✕ 客製化私廚體驗 (Tab 支援橫向順暢滾動) -->
+    <!-- 篇章 03：7大嚴選慢旅 ✕ 客製化私廚體驗 (Tab 支援橫向順暢滑動) -->
     <section class="section-block">
       <span class="sec-chapter">CHAPTER 03</span>
       <h2 class="sec-title" id="i18n-c3-title">莉梅姐が届ける、厳選ツアー＆オーダーメイド</h2>
@@ -639,6 +682,9 @@
         <div class="jc-features" id="j0-feat">
           ✨ <b>ハイライト</b>：レモングラス香る馬告豚肉、原生ハーブ刺葱料理、水辺の緑意リゾート宿、6名様より貸切可能。
         </div>
+        <div class="charter-action-box" id="j0-charter">
+          <strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
+        </div>
       </div>
 
       <!-- 行程 1：白蘭櫻花茶席 -->
@@ -654,6 +700,9 @@
         </p>
         <div class="jc-features" id="j1-feat">
           🌸 <b>限定予約枠</b>：2027年2月中旬〜3月上旬（昭和桜・富士桜の見頃期）、足腰に優しい平坦コース。
+        </div>
+        <div class="charter-action-box" id="j1-charter">
+          <strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
         </div>
       </div>
 
@@ -671,6 +720,9 @@
         <div class="jc-features" id="j2-feat">
           🚂 <b>サステナブルツーリズム</b>：地産地消の旬野菜、百年の歴史を誇る名湯、最大20名様限定のゆとり旅。
         </div>
+        <div class="charter-action-box" id="j2-charter">
+          <strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
+        </div>
       </div>
 
       <!-- 行程 3：橫跨山海縱貫 -->
@@ -687,18 +739,21 @@
         <div class="jc-features" id="j3-feat">
           🌿 <b>極上の手配力</b>：新幹線と専用車のシームレスな接続、伝統石板屋のプライベート夕食、水辺のリゾートホテル滞在。
         </div>
+        <div class="charter-action-box" id="j3-charter">
+          <strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
+        </div>
       </div>
 
-      <!-- 行程 4：烏尼囊 獵人星空餐桌 (已換成真實長廊夜宴照片) -->
+      <!-- 行程 4：烏尼囊 獵人星空餐桌 (已換成真實長廊營火照片) -->
       <div class="journey-card" id="journey-card-4">
         <div class="jc-badge-row">
           <span class="jc-badge jc-badge-accent" id="j4-b1">6名様より貸切可能</span>
           <span class="jc-badge jc-badge-gold" id="j4-b2">3月〜10月限定</span>
         </div>
         
-        <!-- 使用真實上傳之照片：獵人星空餐桌1.jpg -->
+        <!-- 嵌入真實上傳之照片：獵人星空餐桌1.jpg -->
         <div class="jc-hero-img-box">
-          <img class="jc-hero-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/tokyo-expo/main/%E7%8D%B5%E4%BA%BA%E6%98%9F%E7%A9%BA%E9%A4%90%E6%A1%8C1.jpg" onerror="this.src='https://raw.githubusercontent.com/envoytraveltaiwan-walker/satoyama-indigenous/main/%E7%8D%B5%E4%BA%BA%E6%98%9F%E7%A9%BA%E9%A4%90%E6%A1%8C1.jpg'" alt="獵人星空餐桌長廊營火夜宴">
+          <img class="jc-hero-img" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/tokyo-expo/main/%E7%8D%B5%E4%BA%BA%E6%98%9F%E7%A9%BA%E9%A4%90%E6%A1%8C1.jpg" alt="獵人星空餐桌長廊營火夜宴">
           <div class="jc-hero-caption" id="j4-img-cap">✦ 永康集落の山頂：星空の下、焚き火と伝統の歌声が響く夜宴</div>
         </div>
 
@@ -709,6 +764,9 @@
         </p>
         <div class="jc-features" id="j4-feat">
           🌌 <b>オーダーメイド仕様</b>：約6時間の完全没入、9人乗り専用車送迎、ブヌン族の祈祷と伝統合唱、星空の下のプライベートディナー。
+        </div>
+        <div class="charter-action-box" id="j4-charter">
+          <strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
         </div>
       </div>
 
@@ -726,6 +784,9 @@
         <div class="jc-features" id="j5-feat">
           🪵 <b>オーダーメイド仕様</b>：約6時間の日中体験、伝統衣装着用、八部合音と凱旋体験、森の香りに包まれる風土ガストロノミー。
         </div>
+        <div class="charter-action-box" id="j5-charter">
+          <strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
+        </div>
       </div>
 
       <!-- 行程 6：烏尼囊 a mi nun 部落餐桌 -->
@@ -742,32 +803,36 @@
         <div class="jc-features" id="j6-feat">
           🍃 <b>オーダーメイド仕様</b>：ご家族や小グループに最適な半日プラン、神木祈祷の歌声、ハーバード大学合唱団も体験した国際水準の文化交流。
         </div>
+        <div class="charter-action-box" id="j6-charter">
+          <strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。
+        </div>
       </div>
     </section>
 
-    <!-- 篇章 04：五感伴手禮信物 (調整後的香氛卡與雪梨紙豐富用途說明) -->
+    <!-- 篇章 04：日本時尚雜誌主編隨筆風 信物專欄 -->
     <section class="section-block" style="background: #FFF;">
       <span class="sec-chapter">CHAPTER 04</span>
       <h2 class="sec-title" id="i18n-c4-title">森の気配を宿す、文化の信物</h2>
       
-      <p class="prose-text" id="i18n-c4-desc">
-        安捷國際旅行社為展會特別定制的現場結緣信物。以嗅覺與觸覺雙重維度，封存台灣高山原鄉的古老記憶與純淨祝福。
-      </p>
+      <div class="editor-column-box">
+        <span class="editor-tag" id="ed-tag">Editor’s Column ‧ 旅の記憶を綴る</span>
+        <div class="editor-lead" id="ed-lead">
+          記憶の気配に、そっと触れる。<br>
+          手帳の隙間に忍ばせる、台湾・中央山脈の深い呼吸。
+        </div>
+        
+        <p class="editor-body" id="ed-body">
+          賑わう東京の会場でふと立ち止まると、どこからか届く澄んだヒノキの香りに心がほどけていく。それは、台湾の山々を35年歩み続けてきた旅の案内人・莉梅（メイ）さんが届けてくれた、小さな森の贈り物です。<br><br>
+          台湾の最高峰を抱く中央山脈で育まれた、希少な「天然高山紅檜（ヒノキ）純原油」を、ドイツ製無酸コットンカードに贅沢に噴霧し深層まで吸わせました。そっと寄り添うのは、先住民族の祈りと自然への敬意が刻まれた「6つの伝統紋様」を透かした薄紙・雪梨紙。<br><br>
+          直感で心惹かれた紋様をひとつ選び、透明なPPバッグへ美しく封じ込めてお渡しします。
+        </p>
 
-      <div class="gift-showcase-box">
-        <div class="gift-item-title" id="gift-card-head">
-          <span>🌲</span> 直式純棉香氛卡（吸飽高山檜木原油）
-        </div>
-        <div class="gift-item-desc" id="gift-card-desc">
-          精選 450g 德國純棉無酸卡，纖維深層吸飽 100% 台灣天然高山紅檜純原油。輕嗅之間，沉穩溫潤的木質清香瞬間瀰漫，彷彿一秒置身中央山脈千年檜木原始森林。
+        <div class="editor-usage-list" id="ed-usage">
+          <strong>🌿 暮らしを彩る、愛しい活用法：</strong><br>
+          読書を慈しむ手帳のしおりとして。大切な方へ届ける香りの便箋の下敷きに。あるいは小さなフレームに収めてお部屋を彩るミニアートに。本を開くたび、ページをめくる風に乗って漂う温かな木の香りが、いつでもあなたを誰も知らない美しき台湾の森へと誘ってくれます。
         </div>
 
-        <div class="gift-item-title" id="gift-paper-head">
-          <span>📜</span> 六款部落圖騰雪梨紙（日常美好用途）
-        </div>
-        <div class="gift-item-desc" id="gift-paper-desc">
-          以 17g 高級薄磅透光雪梨紙平鋪印刷先民神聖幾何暗紋。帶回家後，不僅可作為香氛卡的典雅襯紙，亦可作為<strong>手帳閱讀書籤、心意禮品包裹紙、旅行香氛信箋襯底、或放入相框作為居家和風微縮藝術裝飾</strong>，將原鄉的庇佑融入日常生活。
-        </div>
+        <div class="editor-sign" id="ed-sign">— Curated by ENVOY TRAVEL</div>
       </div>
     </section>
 
@@ -834,6 +899,7 @@
         j0Sub: "伝統の手仕事・お守り作り × 水辺の静寂な宿",
         j0Desc: "台北からわずか1.5時間、急峻な登山を伴わない穏やかな里山へ。天然紅檜の巨木林を歩き、幸運のビーズお守り作りや祝祭の餅つきを体験。夜は快適な水辺の宿で天然温泉に浸かり、日々の忙しさを解きほぐします。",
         j0Feat: "✨ <b>ハイライト</b>：レモングラス香る馬告豚肉、原生ハーブ刺葱料理、水辺の緑意リゾート宿、6名様より貸切可能。",
+        charterText: "<strong>✦ 6名様より催行確定！</strong> ご希望の「出発予定日」「参加人数」「ご興味のある旅程」をお知らせいただければ、専任コンシェルジュがスムーズに特別アレンジをご案内いたします。",
 
         j1B1: "1泊2日・2027春限定", j1B2: "シニア・女性歓迎",
         j1Title: "桜の秘境雨｜桜樹下のタイヤル族マイクロツーリズム 2日間",
@@ -873,11 +939,11 @@
         j6Feat: "🍃 <b>オーダーメイド仕様</b>：ご家族や小グループに最適な半日プラン、神木祈祷の歌声、ハーバード大学合唱団も体験した国際水準の文化交流。",
 
         c4Title: "森の気配を宿す、文化の信物",
-        c4Desc: "アンジェがご用意したプレゼントは、嗅覚と触覚を通じて台湾原郷の豊かな自然を閉じ込めた特別な文化ギフトです。",
-        giftCardHead: "🌲 天然台湾ヒノキ原油をたっぷり含んだ香氛カード",
-        giftCardDesc: "450gのドイツ製無酸コットンカードに、100%天然の台湾高山ヒノキ精油を深層まで浸透させました。そっと香りを吸い込むだけで、一瞬にして中央山脈の原生巨木林へと誘われます。",
-        giftPaperHead: "📜 6つの伝統紋様を紡ぐ雪梨紙（日常を彩る活用法）",
-        giftPaperDesc: "半透明の17g薄紙に祖霊の幾何学紋様を繊細に印刷。香氛カードの包み紙としてはもちろん、<strong>読書の手帳しおり、大切な方へのギフト包装、香りを添える便箋の下敷き、または額装してインテリアのミニアート</strong>としても長くお愉しみいただけます。",
+        edTag: "Editor’s Column ‧ 旅の記憶を綴る",
+        edLead: "記憶の気配に、そっと触れる。<br>手帳の隙間に忍ばせる、台湾・中央山脈の深い呼吸。",
+        edBody: "賑わう東京の会場でふと立ち止まると、どこからか届く澄んだヒノキの香りに心がほどけていく。それは、台湾の山々を35年歩み続けてきた旅の案内人・莉梅（メイ）さんが届けてくれた、小さな森の贈り物です。<br><br>台湾の最高峰を抱く中央山脈で育まれた、希少な「天然高山紅檜（ヒノキ）純原油」を、ドイツ製無酸コットンカードに贅沢に噴霧し深層まで吸わせました。そっと寄り添うのは、先住民族の祈りと自然への敬意が刻まれた「6つの伝統紋様」を透かした薄紙・雪梨紙。<br><br>直感で心惹かれた紋様をひとつ選び、透明なPPバッグへ美しく封じ込めてお渡しします。",
+        edUsage: "<strong>🌿 暮らしを彩る、愛しい活用法：</strong><br>読書を慈しむ手帳のしおりとして。大切な方へ届ける香りの便箋の下敷きに。あるいは小さなフレームに収めてお部屋を彩るミニアートに。本を開くたび、ページをめくる風に乗って漂う温かな木の香りが、いつでもあなたを誰も知らない美しき台湾の森へと誘ってくれます。",
+        edSign: "— Curated by ENVOY TRAVEL",
 
         ftAgent: "台湾・安捷國際旅行社有限公司 ENVOY TRAVEL",
         ftReg: "交通部観光署 登録旅行業 甲種 5920 号 ｜ 統一番号：16169138",
@@ -909,6 +975,7 @@
         j0Sub: "祖靈之眼守護手作 ✕ 純樸田園家常 ✕ 靜謐水岸宿",
         j0Desc: "台北出發僅1.5小時即可抵達。免除翻山越嶺負擔，漫步原始紅檜木林間，親手穿起開運祖靈串珠飾品，體驗木臼現搗迎賓麻糬，晚間下榻靜謐水岸空間，在自然熱泉中洗去日常疲勞。",
         j0Feat: "✨ <b>亮點特色</b>：天然馬告山豬肉、時令原生刺蔥料理、水岸綠意森林旅宿、6人成行獨立包團。",
+        charterText: "<strong>✦ 6人成團出發！</strong> 請直接告知我們您「想出發的日期區間」、「參加人數」與「感興趣的行程」，專屬團隊將第一時間為您客製調配成行。",
 
         j1B1: "2 Days ‧ 2027春季限定", j1B2: "樂活銀髮友善",
         j1Title: "【原鄉櫻花雨】櫻花樹下的泰雅微旅行 2日遊",
@@ -948,11 +1015,11 @@
         j6Feat: "🍃 <b>客製專屬模組</b>：適合親友包團半日文化饗宴、百年神木祈福之音、哈佛合唱團等國際貴賓同款體驗。",
 
         c4Title: "山林氣息的文化信物",
-        c4Desc: "安捷為您準備的現場禮遇，以嗅覺與觸覺的雙重維度，封存台灣高山原鄉的古老記憶與純淨祝福。",
-        giftCardHead: "🌲 吸飽台灣檜木純原油的直式純棉香氛卡",
-        giftCardDesc: "精選 450g 德國純棉無酸卡，纖維深層吸飽 100% 台灣天然高山紅檜純原油。輕嗅之間，沉穩溫潤的木質清香瞬間瀰漫，彷彿一秒置身中央山脈千年檜木原始森林。",
-        giftPaperHead: "📜 六款部落圖騰雪梨紙（多元生活用途）",
-        giftPaperDesc: "以 17g 高級薄磅透光雪梨紙平鋪印刷先民神聖幾何暗紋。帶回家後，不僅可作為香氛卡的典雅襯紙，亦可作為<strong>手帳閱讀書籤、心意禮品包裹紙、旅行香氛信箋襯底、或放入相框作為居家和風微縮藝術裝飾</strong>，將原鄉的庇佑融入日常生活。",
+        edTag: "Editor’s Column ‧ 雜誌主編選物隨筆",
+        edLead: "日常に潜む、森の呼吸。<br>把中央山脈的深邃寧靜，悄悄夾進日子的扉頁裡。",
+        edBody: "忙碌的東京展會一隅，空氣中忽然飄來一抹極為純淨的木質清香。這是引路人莉梅姐為懂得品味生活的知心旅人，悉心備好的一份溫柔見面禮。<br><br>她將 100% 採集自台灣中央山脈的「天然高山紅檜純原油」，深層霧化浸潤於德國特厚純棉無酸卡之中。與其相伴的，是六款承載著先民大地信仰的神聖圖騰雪梨紙——每一道幾何線條，都是百年聚落對行路人的平安祝願。<br><br>挑選一張此時此刻最觸動您心靈的圖騰，平整襯入透明袋中封存。它不只是一張藏書票信物，更是一座能隨身攜帶的高山森林。",
+        edUsage: "<strong>🌿 融入日常的美好靈感：</strong><br>夾在隨身手帳或喜愛的書頁間作為雅致書籤；為遠方摯友包裹禮品時襯上一份溫潤心意；或放入小相框中作為微縮和風藝術擺飾。在翻頁的微風拂過之際，隨時都能在城市的日常裡，重溫台灣深山最純淨安定的深呼吸。",
+        edSign: "— Curated by ENVOY TRAVEL",
 
         ftAgent: "安捷國際旅行社有限公司 ENVOY TRAVEL",
         ftReg: "交通部觀光署 註冊旅行業 甲種 5920 號 ｜ 統編：16169138",
@@ -1014,16 +1081,17 @@
         document.getElementById(`j${i}-sub`).innerText = dict[`j${i}Sub`];
         document.getElementById(`j${i}-desc`).innerText = dict[`j${i}Desc`];
         document.getElementById(`j${i}-feat`).innerHTML = dict[`j${i}Feat`];
+        document.getElementById(`j${i}-charter`).innerHTML = dict.charterText;
       }
 
       document.getElementById('j4-img-cap').innerText = dict.j4ImgCap;
 
       document.getElementById('i18n-c4-title').innerText = dict.c4Title;
-      document.getElementById('i18n-c4-desc').innerText = dict.c4Desc;
-      document.getElementById('gift-card-head').innerHTML = `<span>🌲</span> ${dict.giftCardHead}`;
-      document.getElementById('gift-card-desc').innerHTML = dict.giftCardDesc;
-      document.getElementById('gift-paper-head').innerHTML = `<span>📜</span> ${dict.giftPaperHead}`;
-      document.getElementById('gift-paper-desc').innerHTML = dict.giftPaperDesc;
+      document.getElementById('ed-tag').innerText = dict.edTag;
+      document.getElementById('ed-lead').innerHTML = dict.edLead;
+      document.getElementById('ed-body').innerHTML = dict.edBody;
+      document.getElementById('ed-usage').innerHTML = dict.edUsage;
+      document.getElementById('ed-sign').innerText = dict.edSign;
 
       document.getElementById('i18n-ft-agent').innerText = dict.ftAgent;
       document.getElementById('i18n-ft-reg').innerText = dict.ftReg;
@@ -1055,7 +1123,6 @@
         if (card) card.classList.toggle('active', i === idx);
       }
 
-      // 讓被點擊的 Tab 自動平滑捲動至可視區域中心
       const activeBtn = tabs[idx];
       const container = document.getElementById('journey-tabs-container');
       const containerWidth = container.offsetWidth;
